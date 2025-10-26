@@ -1,12 +1,7 @@
 // src/data/profileData.ts
 import { 
-  FaJava, FaReact, FaAws, FaDocker, FaPython, 
-  FaCode, FaTools, FaCloud, FaDatabase 
+  FaReact, FaCode, FaCloud, FaDatabase 
 } from 'react-icons/fa';
-import { 
-  SiSpringboot, SiKubernetes, SiTerraform, SiTypescript, SiPostgresql, 
-  SiMongodb, SiApachekafka, SiJenkins, SiGit, SiRabbitmq, SiRedis 
-} from 'react-icons/si';
 
 // --- Navbar Links ---
 export const navLinks = [

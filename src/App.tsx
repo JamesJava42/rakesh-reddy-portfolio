@@ -5,7 +5,6 @@ import SkillCard from './components/SkillCard';
 import Navbar from './components/Navbar';
 import Section from './components/Section';
 import GlassCard from './components/GlassCard';
-import SkillBar from './components/SkillBar';
 import { skillCategories, SkillCategoryIcons,  } from './data/profileData';
 
 export default function App() {

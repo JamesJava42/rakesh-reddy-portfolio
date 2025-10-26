@@ -1,5 +1,4 @@
 // src/components/SkillCard.tsx
-import React from 'react';
 import type { IconType } from 'react-icons';
 import GlassCard from './GlassCard';
 import SkillBar from './SkillBar';
