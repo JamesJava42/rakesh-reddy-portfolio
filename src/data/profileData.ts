@@ -1,6 +1,6 @@
 // src/data/profileData.ts
-import { FaReact, FaCode, FaCloud, FaDatabase, FaChartBar, FaRocket, FaTerminal, FaServer, FaShieldAlt, FaNetworkWired, FaCogs, FaSyncAlt } from 'react-icons/fa';
-import type { IconType } from 'react-icons';
+// Remove unused imports
+import { FaCloud, FaChartBar, FaRocket, FaTerminal, FaServer, FaShieldAlt, FaNetworkWired, FaCogs, FaSyncAlt } from 'react-icons/fa';
 
 // ──────────────────────────────
 // 🌐 Navbar Links
@@ -182,6 +182,7 @@ interface Project {
   category: 'cloud' | 'ai-ml' | 'vr' | 'backend' | 'systems';
   featured?: boolean;
 }
+
 export const projects: Project[] = [
   {
     title: "Cloud-Native Ordering Platform",

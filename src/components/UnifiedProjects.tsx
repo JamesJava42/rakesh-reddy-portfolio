@@ -1,7 +1,6 @@
-// src/components/UnifiedProjects.tsx
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { projects } from '../data/profileData';
+import { projects } from '../data/profileData'; // Import projects here
 import GlassCard from './GlassCard';
 import Badge from './Badge';
 

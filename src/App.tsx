@@ -14,12 +14,11 @@ import {
   FaNetworkWired,
 } from "react-icons/fa";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { experiences, projects } from "./data/profileData";
+import { experiences } from "./data/profileData"; // Remove projects import
 import Navbar from "./components/Navbar";
 import Section from "./components/Section";
 import UnifiedSkills from "./components/UnifiedSkills";
 import UnifiedProjects from "./components/UnifiedProjects";
-
 /**
  * Modern, animated App with enhanced About and Experience sections
  */
