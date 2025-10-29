@@ -5,6 +5,13 @@ import {
   FaEnvelope,
   FaPhone,
   FaMapMarkerAlt,
+  FaCode,
+  FaCloud,
+  FaRocket,
+  FaDatabase,
+  FaShieldAlt,
+  FaMicrochip,
+  FaNetworkWired,
 } from "react-icons/fa";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { experiences, projects } from "./data/profileData";
@@ -14,17 +21,10 @@ import UnifiedSkills from "./components/UnifiedSkills";
 import UnifiedProjects from "./components/UnifiedProjects";
 
 /**
- * Modern, animated App - includes:
- * - animated gradient background
- * - mouse-follow glow orb
- * - parallax 3D tilt cards
- * - framer-motion reveal animations
- *
- * Uses React.ReactNode for icon children types to avoid JSX namespace issues.
+ * Modern, animated App with enhanced About and Experience sections
  */
 
 export default function App() {
-  // mouse position for global glow orb
   const [mousePos, setMousePos] = useState({ x: -500, y: -500 });
 
   useEffect(() => {
@@ -36,14 +36,11 @@ export default function App() {
 
   return (
     <main className="relative overflow-x-hidden scroll-smooth text-slate-100 min-h-screen">
-      {/* Animated background layer */}
+      {/* Background elements remain the same */}
       <div className="absolute inset-0 -z-20 bg-gradient-to-br from-[#0b1221] via-[#0f1724] to-[#071024] bg-[length:400%_400%] animate-gradientSlow" />
-
-      {/* Floating soft orbs */}
       <div className="floating-bubble bg-violet-600/20 left-8 top-12" />
       <div className="floating-bubble bg-cyan-400/20 right-12 bottom-20" />
 
-      {/* Mouse-follow glow orb (subtle) */}
       <motion.div
         className="pointer-events-none fixed -z-10 w-[420px] h-[420px] rounded-full blur-[100px] opacity-70"
         animate={{ x: mousePos.x - 210, y: mousePos.y - 210 }}
@@ -108,84 +105,186 @@ export default function App() {
         </div>
       </Section>
 
-      {/* ---------------- About ---------------- */}
+      {/* ---------------- Enhanced About Section ---------------- */}
       <Section id="about">
         <motion.h2
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-bold text-center mb-10"
+          className="text-3xl md:text-4xl font-bold text-center mb-4"
         >
           About Me
         </motion.h2>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.9 }}
-          className="max-w-3xl mx-auto"
+          transition={{ delay: 0.2 }}
+          className="text-center text-slate-300 max-w-2xl mx-auto mb-12"
         >
-          <ParallaxCard>
-            <p className="text-lg leading-relaxed text-slate-200">
-              I design and implement scalable, maintainable microservice systems
-              and pipelines — with a focus on streaming (Kafka), resilience,
-              and production-grade DevOps. I enjoy converting complex domain
-              problems into reliable systems that scale.
-            </p>
-          </ParallaxCard>
-        </motion.div>
+          Passionate about building scalable systems that solve real-world problems
+        </motion.p>
+
+        <div className="max-w-6xl mx-auto">
+          {/* Main About Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="glass-enhanced p-8 mb-12"
+          >
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-4">Cloud & DevOps Engineer</h3>
+                <p className="text-lg leading-relaxed text-slate-200 mb-6">
+                  I design and implement scalable, maintainable microservice systems
+                  and pipelines — with a focus on streaming (Kafka), resilience,
+                  and production-grade DevOps. I enjoy converting complex domain
+                  problems into reliable systems that scale.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <span className="px-4 py-2 rounded-full bg-cyan-500/20 text-cyan-300 text-sm font-medium">
+                    Microservices
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-purple-500/20 text-purple-300 text-sm font-medium">
+                    Cloud Native
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-green-500/20 text-green-300 text-sm font-medium">
+                    DevOps
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-orange-500/20 text-orange-300 text-sm font-medium">
+                    Event-Driven
+                  </span>
+                </div>
+              </div>
+              
+              {/* Tech Stack Visualization */}
+              <div className="grid grid-cols-3 gap-4">
+                <TechPill icon={<FaCloud />} label="Cloud Platforms" color="cyan" />
+                <TechPill icon={<FaCode />} label="Backend Development" color="purple" />
+                <TechPill icon={<FaRocket />} label="DevOps & CI/CD" color="green" />
+                <TechPill icon={<FaDatabase />} label="Data Systems" color="blue" />
+                <TechPill icon={<FaShieldAlt />} label="Security" color="red" />
+                <TechPill icon={<FaNetworkWired />} label="Networking" color="orange" />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Key Expertise Areas */}
+          <div className="grid md:grid-cols-3 gap-6">
+            <ExpertiseCard
+              icon={<FaMicrochip />}
+              title="System Architecture"
+              description="Designing scalable microservices with event-driven patterns and cloud-native principles"
+              color="cyan"
+            />
+            <ExpertiseCard
+              icon={<FaRocket />}
+              title="DevOps Automation"
+              description="Building CI/CD pipelines, infrastructure as code, and automated deployment systems"
+              color="purple"
+            />
+            <ExpertiseCard
+              icon={<FaShieldAlt />}
+              title="Production Reliability"
+              description="Ensuring system resilience, monitoring, and observability in production environments"
+              color="green"
+            />
+          </div>
+        </div>
       </Section>
 
-      {/* ---------------- Experience ---------------- */}
+      {/* ---------------- Enhanced Experience Section ---------------- */}
       <Section id="experience">
         <motion.h2
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-bold text-center mb-10"
+          className="text-3xl md:text-4xl font-bold text-center mb-4"
         >
-          Experience
+          Professional Journey
         </motion.h2>
 
-        <div className="space-y-8 max-w-4xl mx-auto">
-          {experiences.map((job, i) => (
-            <motion.div
-              key={job.company}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <ParallaxCard>
-                <h3 className="text-xl md:text-2xl font-semibold">{job.role}</h3>
-                <p className="text-primary/90 font-medium mb-2">
-                  {job.company} · {job.date}
-                </p>
-                <ul className="list-disc ml-6 space-y-2 text-slate-300">
-                  {job.points.map((p, idx) => (
-                    <li key={idx}>{p}</li>
-                  ))}
-                </ul>
-              </ParallaxCard>
-            </motion.div>
-          ))}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-center text-slate-300 max-w-2xl mx-auto mb-12"
+        >
+          Building experience across academia and industry with a focus on cloud technologies
+        </motion.p>
+
+        <div className="max-w-6xl mx-auto">
+          {/* Timeline Container */}
+          <div className="relative">
+            {/* Timeline Line */}
+            <div className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-500 to-purple-500 rounded-full" />
+            
+            {experiences.map((job, i) => (
+              <motion.div
+                key={job.company}
+                initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: i * 0.2 }}
+                className={`relative flex flex-col md:flex-row items-start mb-12 ${
+                  i % 2 === 0 ? 'md:flex-row-reverse' : ''
+                }`}
+              >
+                {/* Timeline Dot */}
+                <div className="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-cyan-400 rounded-full border-4 border-slate-900 z-10" />
+                
+                {/* Date Card */}
+                <div className={`w-full md:w-1/4 mb-4 md:mb-0 ${
+                  i % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8'
+                }`}>
+                  <div className="glass p-4 rounded-xl">
+                    <p className="text-cyan-300 font-semibold">{job.date}</p>
+                    <p className="text-slate-300 text-sm">{job.company}</p>
+                  </div>
+                </div>
+
+                {/* Experience Card */}
+                <div className="w-full md:w-3/4">
+                  <ExperienceCard job={job} index={i} />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Career Highlights */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-16"
+          >
+            <h3 className="text-2xl font-bold text-white text-center mb-8">Career Highlights</h3>
+            <div className="grid md:grid-cols-4 gap-6">
+              <HighlightCard number="3+" label="Years Experience" />
+              <HighlightCard number="10+" label="Projects Delivered" />
+              <HighlightCard number="5+" label="Technologies Mastered" />
+              <HighlightCard number="2" label="Companies Worked" />
+            </div>
+          </motion.div>
         </div>
       </Section>
 
       {/* ---------------- Projects ---------------- */}
-  <Section id="projects" className="!py-0">
-  <UnifiedProjects />
-</Section>
+      <Section id="projects" className="!py-0">
+        <UnifiedProjects />
+      </Section>
 
       {/* ---------------- Skills ---------------- */}
-   <Section id="skills" className="!py-0">
-  <UnifiedSkills />
-  {/* OR use MinimalSkills if you prefer the cleaner look: */}
-  {/* <MinimalSkills /> */}
-</Section>
+      <Section id="skills" className="!py-0">
+        <UnifiedSkills />
+      </Section>
+
       {/* ---------------- Contact ---------------- */}
       <Section id="contact">
         <motion.h2
@@ -254,7 +353,112 @@ export default function App() {
   );
 }
 
-/* ---------------- Subcomponents ---------------- */
+/* ---------------- New Subcomponents ---------------- */
+
+// Tech Pill for About Section
+function TechPill({ icon, label, color }: { icon: React.ReactNode; label: string; color: string }) {
+  const colorClasses = {
+    cyan: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
+    purple: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+    green: 'bg-green-500/20 text-green-300 border-green-500/30',
+    blue: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+    red: 'bg-red-500/20 text-red-300 border-red-500/30',
+    orange: 'bg-orange-500/20 text-orange-300 border-orange-500/30',
+  };
+
+  return (
+    <motion.div
+      whileHover={{ scale: 1.05, y: -2 }}
+      className={`p-4 rounded-xl border backdrop-blur-sm flex flex-col items-center justify-center text-center ${colorClasses[color as keyof typeof colorClasses]}`}
+    >
+      <div className="text-xl mb-2">{icon}</div>
+      <span className="text-sm font-medium">{label}</span>
+    </motion.div>
+  );
+}
+
+// Expertise Card for About Section
+function ExpertiseCard({ icon, title, description, color }: { icon: React.ReactNode; title: string; description: string; color: string }) {
+  const colorClasses = {
+    cyan: 'from-cyan-500/10 to-cyan-500/5 text-cyan-300',
+    purple: 'from-purple-500/10 to-purple-500/5 text-purple-300',
+    green: 'from-green-500/10 to-green-500/5 text-green-300',
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      whileHover={{ y: -5 }}
+      className={`glass p-6 rounded-2xl bg-gradient-to-br ${colorClasses[color as keyof typeof colorClasses]} h-full`}
+    >
+      <div className="text-2xl mb-4">{icon}</div>
+      <h4 className="text-lg font-bold text-white mb-3">{title}</h4>
+      <p className="text-slate-300 text-sm leading-relaxed">{description}</p>
+    </motion.div>
+  );
+}
+
+// Enhanced Experience Card
+function ExperienceCard({ job, index }: { job: any; index: number }) {
+  return (
+    <motion.div
+      whileHover={{ y: -5 }}
+      className="glass-enhanced p-6 rounded-2xl h-full"
+    >
+      <div className="flex items-start justify-between mb-4">
+        <h3 className="text-xl font-bold text-white">{job.role}</h3>
+        <div className="hidden md:block px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-sm font-medium">
+          {index === 0 ? 'Current' : 'Previous'}
+        </div>
+      </div>
+      
+      <ul className="space-y-3">
+        {job.points.map((point: string, idx: number) => (
+          <motion.li
+            key={idx}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 + idx * 0.1 }}
+            className="flex items-start gap-3 text-slate-300"
+          >
+            <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0" />
+            <span className="leading-relaxed">{point}</span>
+          </motion.li>
+        ))}
+      </ul>
+
+      {/* Tech Tags */}
+      <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-white/10">
+        {job.tech && job.tech.map((tech: string, techIndex: number) => (
+          <span
+            key={techIndex}
+            className="px-2 py-1 rounded-full text-xs bg-white/5 text-slate-300 border border-white/10"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+// Highlight Card for Experience Section
+function HighlightCard({ number, label }: { number: string; label: string }) {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      className="text-center p-6 rounded-2xl glass border border-white/10"
+    >
+      <div className="text-3xl font-bold text-cyan-300 mb-2">{number}</div>
+      <div className="text-slate-300 text-sm">{label}</div>
+    </motion.div>
+  );
+}
+
+/* ---------------- Existing Subcomponents (Keep these) ---------------- */
 
 function ContactItem({ icon, title, value }: { icon: React.ReactNode; title: string; value: string; }) {
   return (
@@ -289,7 +493,6 @@ function FormField({ id, label, type, placeholder }: { id: string; label: string
 
 /* ---------- ParallaxCard (3D Tilt) ---------- */
 function ParallaxCard({ children }: { children: React.ReactNode }) {
-  // 2D offsets tracked, converted to small rotation values
   const mvX = useMotionValue(0);
   const mvY = useMotionValue(0);
   const rotX = useTransform(mvY, [-120, 120], [12, -12]);
