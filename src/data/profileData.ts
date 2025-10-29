@@ -1,117 +1,230 @@
 // src/data/profileData.ts
-import { 
-  FaReact, FaCode, FaCloud, FaDatabase 
-} from 'react-icons/fa';
+import { FaReact, FaCode, FaCloud, FaDatabase, FaChartBar, FaRocket, FaTerminal, FaServer, FaShieldAlt, FaNetworkWired, FaCogs, FaSyncAlt } from 'react-icons/fa';
+import type { IconType } from 'react-icons';
 
-// --- Navbar Links ---
-export const navLinks = [
-  { name: 'About', href: '#about' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Skills', href: '#skills' },
+// ──────────────────────────────
+// 🌐 Navbar Links
+// ──────────────────────────────
+export const navLinks: { name: string; href: string }[] = [
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
+  { name: "Projects", href: "#projects" },
+  { name: "Skills", href: "#skills" },
+  { name: "Contact", href: "#contact" },
 ];
 
-// --- Skills Data (Full-Stack/Backend) ---
-
-// This map holds the component for each icon key
+// ──────────────────────────────
+// ⚙️ Skill Category Icon Map
+// ──────────────────────────────
 export const SkillCategoryIcons = {
-  FaCode,
-  FaReact,
-  FaCloud,
-  FaDatabase,
+  CloudIcon: FaCloud,
+  DevOpsIcon: FaRocket,
+  IaCIcon: FaTerminal,
+  MonitoringIcon: FaChartBar,
+  BackendIcon: FaServer,
+  SecurityIcon: FaShieldAlt,
+  NetworkIcon: FaNetworkWired,
+  AutomationIcon: FaCogs,
+  CICDIcon: FaSyncAlt
 };
 
-// This is the comprehensive skill list
-export const skillCategories = [
+// ──────────────────────────────
+// 🧠 Reorganized Skill Categories
+// ──────────────────────────────
+interface Skill {
+  name: string;
+  level?: number;
+}
+
+interface SkillCategory {
+  title: string;
+  Icon: keyof typeof SkillCategoryIcons;
+  skills: Skill[];
+  description: string;
+}
+
+export const skillCategories: SkillCategory[] = [
   {
-    title: 'Core Backend & Languages',
-    Icon: 'FaCode', // Icon key
+    title: "Cloud Platforms & Services",
+    Icon: "CloudIcon",
+    description: "Cloud infrastructure and platform services",
     skills: [
-      { name: 'Java 17 / 11', level: 95 },
-      { name: 'Spring Boot & Spring Cloud', level: 90 },
-      { name: 'Microservice Architecture', level: 85 },
-      { name: 'JPA / Hibernate', level: 90 },
-      { name: 'Multithreading & Concurrency', level: 80 },
-      { name: 'Python (Scripting & Automation)', level: 75 },
+      { name: "Azure VMs & Compute" },
+      { name: "Azure Kubernetes Service (AKS)" },
+      { name: "App Services & Functions" },
+      { name: "Azure Storage (Blob, Data Lake)" },
+      { name: "Azure SQL Database" },
+      { name: "Azure Active Directory" },
+      { name: "Azure Networking (VNet, NSG, LB)" },
+      { name: "Azure Monitor & Log Analytics" }
     ],
   },
   {
-    title: 'Frontend & Full-Stack',
-    Icon: 'FaReact', // Icon key
+    title: "Infrastructure as Code",
+    Icon: "IaCIcon",
+    description: "Infrastructure automation and configuration management",
     skills: [
-      { name: 'React', level: 80 },
-      { name: 'TypeScript / JavaScript', level: 85 },
-      { name: 'Node.js', level: 70 },
-      { name: 'HTML5 & CSS3', level: 80 },
-      { name: 'Tailwind CSS', level: 75 },
-      { name: 'Angular', level: 70 },
+      { name: "Terraform" },
+      { name: "Azure Resource Manager (ARM)" },
+      { name: "Bicep" },
+      { name: "Ansible" },
+      { name: "Azure Automation" },
+      { name: "Azure Policy" },
+      { name: "PowerShell Scripting" },
+      { name: "Python Scripting" }
     ],
   },
   {
-    title: 'DevOps, Cloud & Monitoring',
-    Icon: 'FaCloud', // Icon key
+    title: "DevOps & CI/CD",
+    Icon: "CICDIcon",
+    description: "Continuous integration, delivery, and deployment",
     skills: [
-      { name: 'AWS (EC2, S3, RDS, Lambda)', level: 85 },
-      { name: 'Docker', level: 90 },
-      { name: 'Kubernetes (K8s)', level: 80 },
-      { name: 'Terraform (IaC)', level: 80 },
-      { name: 'CI/CD (Jenkins & GitHub Actions)', level: 85 },
-      { name: 'Prometheus & Grafana', level: 70 },
+      { name: "Azure DevOps Pipelines" },
+      { name: "GitHub Actions" },
+      { name: "Jenkins" },
+      { name: "Docker & Containerization" },
+      { name: "Kubernetes Orchestration" },
+      { name: "Git & Azure Repos" },
+      { name: "Blue-Green Deployments" },
+      { name: "Infrastructure Testing" }
     ],
   },
   {
-    title: 'Databases & Messaging',
-    Icon: 'FaDatabase', // Icon key
+    title: "Monitoring & Observability",
+    Icon: "MonitoringIcon",
+    description: "System monitoring, logging, and performance tracking",
     skills: [
-      { name: 'PostgreSQL & MySQL', level: 90 },
-      { name: 'MongoDB (NoSQL)', level: 75 },
-      { name: 'Redis (Caching)', level: 80 },
-      { name: 'Apache Kafka', level: 85 },
-      { name: 'RabbitMQ', level: 75 },
-      { name: 'Amazon SQS', level: 70 },
+      { name: "Azure Monitor" },
+      { name: "Application Insights" },
+      { name: "Log Analytics" },
+      { name: "Prometheus & Grafana" },
+      { name: "Alerting & Dashboards" },
+      { name: "Performance Monitoring" },
+      { name: "Cost Optimization" },
+      { name: "Azure Backup & Recovery" }
+    ],
+  },
+  {
+    title: "Backend Development",
+    Icon: "BackendIcon",
+    description: "Microservices and backend system development",
+    skills: [
+      { name: "Java & Spring Boot" },
+      { name: "Microservices Architecture" },
+      { name: "REST APIs" },
+      { name: "Event-driven Systems" },
+      { name: "Kafka & Message Brokers" },
+      { name: "Database Design & Optimization" },
+      { name: "API Gateway Patterns" },
+      { name: "Distributed Systems" }
+    ],
+  },
+  {
+    title: "Security & Compliance",
+    Icon: "SecurityIcon",
+    description: "Cloud security and compliance frameworks",
+    skills: [
+      { name: "Azure Security Center" },
+      { name: "Identity & Access Management" },
+      { name: "Network Security Groups" },
+      { name: "Security Best Practices" },
+      { name: "Compliance Frameworks" },
+      { name: "Data Encryption" },
+      { name: "Vulnerability Management" },
+      { name: "Security Monitoring" }
     ],
   }
 ];
 
-// --- Work Experience Data ---
-export const experiences = [
+// ──────────────────────────────
+// 🧩 Work Experience
+// ──────────────────────────────
+interface Experience {
+  role: string;
+  company: string;
+  date: string;
+  points: string[];
+}
+
+export const experiences: Experience[] = [
   {
-    role: 'Technical Developer',
-    company: 'CSUDH',
-    date: 'Sep 2023 - Present',
+    role: "Technical Developer",
+    company: "California State University, Dominguez Hills",
+    date: "Sep 2023 – Present",
     points: [
-      'Built a real-time event-streaming solution with Apache Kafka.',
-      'Organized Agile sprints using JIRA and controlled versions with Git.',
-      'Migrated legacy Spring MVC modules to modern Spring Boot microservices.',
+      "Developed backend features for 'Growth Book' project using SUPABASE & FIREBASE for real-time sync.",
+      "Built unified front-end experiences with React, React Native, and Angular.",
+      "Implemented secure authentication layers with role-based access control.",
+      "Led Agile sprints, backlog management, and JIRA coordination.",
     ],
   },
   {
-    role: 'Developer',
-    company: 'Vanna Infotech',
-    date: 'Apr 2021 - Jul 2023',
+    role: "Senior Backend Developer (AWS Focused)",
+    company: "Vanna Infotech",
+    date: "Apr 2021 – Jul 2023",
     points: [
-      'Automated AWS infrastructure with Terraform and Jenkins.',
-      'Designed a resilient CI/CD framework for automated AWS deployment.',
-      'Prototyped UI components from Figma wireframes.',
+      "Architected and deployed microservices on AWS with Spring Boot.",
+      "Provisioned infrastructure using Terraform (EC2, RDS, S3).",
+      "Automated CI/CD with Jenkins for testing, packaging, and blue/green deployments.",
+      "Implemented observability stack using Prometheus and Grafana.",
     ],
   },
 ];
 
-// --- Projects Data ---
-export const projects = [
+// ──────────────────────────────
+// 🚀 Projects
+// ──────────────────────────────
+interface Project {
+  title: string;
+  description: string;
+  tech: string[];
+}
+
+export const projects: Project[] = [
   {
-    title: 'Cloud-Native Ordering Platform',
-    description: 'Deployed microservices to AWS EC2 behind an ELB, delivering 99% uptime.',
-    tech: ['TypeScript', 'React', 'AWS', 'Kubernetes', 'GraphQL'],
+    title: "Cloud-Native Ordering Platform",
+    description: "Deployed microservices to AWS EC2 behind an ELB with 99% uptime.",
+    tech: ["TypeScript", "React", "AWS", "Kubernetes", "GraphQL"],
   },
   {
-    title: 'Real-Time Stock Control Systems',
-    description: 'Provisioned a fault-tolerant cluster on AWS EC2 using Docker and Kubernetes.',
-    tech: ['Java', 'Spring Boot', 'Kafka', 'AWS', 'JPA'],
+    title: "Real-Time Stock Control System",
+    description: "Provisioned fault-tolerant cluster on AWS EC2 using Docker & Kubernetes.",
+    tech: ["Java", "Spring Boot", "Kafka", "AWS", "JPA"],
   },
   {
-    title: 'Academic Profile Portal',
-    description: 'Built secure profile management and real-time search using Spring Boot and Angular.',
-    tech: ['Spring Boot', 'Angular', 'AWS EC2', 'MySQL'],
+    title: "Academic Profile Portal",
+    description: "Developed secure profile management & real-time search with Angular and Spring Boot.",
+    tech: ["Spring Boot", "Angular", "AWS EC2", "MySQL"],
+  },
+  {
+    title: "Azure ML Log Anomaly Detector",
+    description: "Created an unsupervised model for server log anomaly detection in Azure Blob Storage.",
+    tech: ["Python", "Scikit-learn", "Azure Blob Storage", "ML", "Data Pipeline"],
+  },
+  {
+    title: "Creative Image Style Transfer",
+    description: "Applied artistic styles using CNNs and deployed inference API using PyTorch/TensorFlow.",
+    tech: ["Python", "PyTorch", "CNN", "Transfer Learning", "Flask API"],
+  },
+  {
+    title: "VR Interactive Physics Simulation Lab",
+    description: "Built VR simulation of pendulum and mechanics experiments in Unity 3D.",
+    tech: ["Unity 3D", "C#", "Physics Engine", "XR", "VR Simulation"],
+  },
+  {
+    title: "VR Electrostatic Field Simulator",
+    description: "Created real-time Coulomb's Law field visualization for Meta Quest 3.",
+    tech: ["Unity 3D", "C#", "Electromagnetism", "Oculus SDK"],
+  },
+  {
+    title: "Core Java Banking Transaction System",
+    description: "Developed multi-threaded financial transaction engine in Core Java.",
+    tech: ["Java", "Concurrency", "JDBC", "PostgreSQL", "JUnit"],
+  },
+  {
+    title: "Secure File Transfer Utility",
+    description: "Built socket-based file transfer utility with integrity checks and encryption.",
+    tech: ["Java", "Networking", "Security", "File I/O", "Maven", "Linux"],
   },
 ];

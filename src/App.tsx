@@ -1,299 +1,353 @@
-// src/App.tsx
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
-import { experiences, projects } from './data/profileData';
-import SkillCard from './components/SkillCard';
-import Navbar from './components/Navbar';
-import Section from './components/Section';
-import GlassCard from './components/GlassCard';
-import { skillCategories, SkillCategoryIcons,  } from './data/profileData';
+import React, { useEffect, useState } from "react";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { experiences, projects } from "./data/profileData";
+import Navbar from "./components/Navbar";
+import Section from "./components/Section";
+import UnifiedSkills from "./components/UnifiedSkills";
+
+/**
+ * Modern, animated App - includes:
+ * - animated gradient background
+ * - mouse-follow glow orb
+ * - parallax 3D tilt cards
+ * - framer-motion reveal animations
+ *
+ * Uses React.ReactNode for icon children types to avoid JSX namespace issues.
+ */
 
 export default function App() {
+  // mouse position for global glow orb
+  const [mousePos, setMousePos] = useState({ x: -500, y: -500 });
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) =>
+      setMousePos({ x: e.clientX, y: e.clientY });
+    window.addEventListener("mousemove", handler);
+    return () => window.removeEventListener("mousemove", handler);
+  }, []);
+
   return (
-    <main className="overflow-x-hidden">
+    <main className="relative overflow-x-hidden scroll-smooth text-slate-100 min-h-screen">
+      {/* Animated background layer */}
+      <div className="absolute inset-0 -z-20 bg-gradient-to-br from-[#0b1221] via-[#0f1724] to-[#071024] bg-[length:400%_400%] animate-gradientSlow" />
+
+      {/* Floating soft orbs */}
+      <div className="floating-bubble bg-violet-600/20 left-8 top-12" />
+      <div className="floating-bubble bg-cyan-400/20 right-12 bottom-20" />
+
+      {/* Mouse-follow glow orb (subtle) */}
+      <motion.div
+        className="pointer-events-none fixed -z-10 w-[420px] h-[420px] rounded-full blur-[100px] opacity-70"
+        animate={{ x: mousePos.x - 210, y: mousePos.y - 210 }}
+        transition={{ type: "spring", stiffness: 120, damping: 20 }}
+        style={{
+          background:
+            "radial-gradient(circle at 30% 30%, rgba(139,92,246,0.18), transparent 20%), radial-gradient(circle at 70% 70%, rgba(34,211,238,0.12), transparent 30%)",
+        }}
+      />
+
       <Navbar />
 
-      {/* --- Home Section --- */}
-      <section
-        id="home"
-        className="min-h-screen flex flex-col justify-center items-center text-center px-6"
-      >
-        <h1 className="text-5xl md:text-7xl font-extrabold text-white">
-          Hi, I'm Rakesh Reddy
-        </h1>
-        <p className="text-2xl md:text-3xl font-semibold text-gray-300 mt-4">
-          Microservices & API Integration
-        </p>
-        <p className="text-lg text-gray-400 max-w-2xl mt-6">
-          3+ years of experience building enterprise-grade, cloud-native platforms
-          using Java, Spring Boot, Kafka, and Kubernetes.
-        </p>
-        <div className="mt-8 flex gap-4">
-          <a
-            href="/Mareddy_Rakesh.pdf" // Make sure to add your PDF to the 'public' folder
-            download
-            className="px-6 py-3 rounded-md bg-primary text-white font-medium shadow-lg hover:bg-opacity-90 transition-all"
+      {/* ---------------- Home ---------------- */}
+      <Section id="home" className="min-h-screen flex items-center justify-center">
+        <div className="max-w-4xl text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9 }}
+            className="text-5xl md:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#8b5cf6] via-[#06b6d4] to-[#f472b6]"
           >
-            Download Resume
-          </a>
-          <a
-            href="#projects"
-            className="px-6 py-3 rounded-md border-2 border-gray-400 text-white font-medium hover:bg-white/10 transition-all"
-          >
-            View Projects
-          </a>
-        </div>
-      </section>
+            Hi, I'm <span className="text-white">Rakesh Reddy</span>
+          </motion.h1>
 
-      {/* --- About Section --- */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="text-xl md:text-2xl font-semibold text-slate-300 mt-4"
+          >
+            Microservices · Event-driven Systems · Cloud-native Platforms
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.45, duration: 0.6 }}
+            className="max-w-2xl mx-auto text-slate-400 mt-6"
+          >
+            3+ years building resilient microservices with Java, Spring Boot,
+            Kafka, and Kubernetes — focusing on reliability, observability, and
+            automation.
+          </motion.p>
+
+          <motion.div
+            className="mt-8 flex items-center justify-center gap-4"
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.8 }}
+          >
+            <a href="/Mareddy_Rakesh.pdf" download className="btn-primary">
+              Download Resume
+            </a>
+            <a href="#projects" className="btn-outline">
+              View Projects
+            </a>
+          </motion.div>
+        </div>
+      </Section>
+
+      {/* ---------------- About ---------------- */}
       <Section id="about">
-        <h2 className="text-4xl font-bold text-center mb-12 text-white">
-          About Me
-        </h2>
-        <GlassCard>
-          <p className="text-xl text-center text-gray-200 leading-relaxed">
-            I specialize in Java/Spring Boot, microservices, Kafka-based event
-            streaming, and DevOps pipelines with Docker, Kubernetes, and AWS.
-            I'm passionate about transforming complex business processes into
-            resilient, scalable, and automated microservice architectures.
-          </p>
-        </GlassCard>
-      </Section>
-
-      {/* --- Experience Section --- */}
-      <Section id="experience">
-        <h2 className="text-4xl font-bold text-center mb-12 text-white">
-          Experience
-        </h2>
-        <div className="space-y-8">
-          {experiences.map((job) => (
-            <GlassCard key={job.company}>
-              <h3 className="text-2xl font-bold text-white">{job.role}</h3>
-              <p className="text-xl font-medium text-primary mb-2">
-                {job.company} | {job.date}
-              </p>
-              <ul className="list-disc list-outside ml-5 space-y-2 text-gray-300">
-                {job.points.map((point, i) => (
-                  <li key={i}>{point}</li>
-                ))}
-              </ul>
-            </GlassCard>
-          ))}
-        </div>
-      </Section>
-
-      {/* --- Projects Section --- */}
-      <Section id="projects">
-        <h2 className="text-4xl font-bold text-center mb-12 text-white">
-          My Projects
-        </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <GlassCard key={project.title} className="flex flex-col">
-              <h3 className="text-2xl font-bold text-white mb-3">
-                {project.title}
-              </h3>
-              <p className="text-gray-300 mb-4 flex-grow">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 rounded-full bg-primary/20 text-primary text-sm font-medium"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </GlassCard>
-          ))}
-        </div>
-      </Section>
-
-      {/* --- NEW Skills Section --- */}
-<Section id="skills">
-  <h2 className="text-4xl font-bold text-center mb-4 text-white">
-    Skills & Expertise
-  </h2>
-  <p className="text-xl text-center text-gray-300 max-w-3xl mx-auto mb-16">
-    A comprehensive overview of my technical skills as a Backend Developer.
-  </p>
-  {/* This is the new 2x2 grid */}
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-    {skillCategories.map((category) => {
-      // Get the correct Icon component from the map
-      const IconComponent = SkillCategoryIcons[category.Icon as keyof typeof SkillCategoryIcons];
-      return (
-        <SkillCard
-          key={category.title}
-          title={category.title}
-          Icon={IconComponent}
-          skills={category.skills}
-        />
-      );
-    })}
-  </div>
-</Section>
-
-      {/* --- Contact Section --- */}
-     {/* --- Contact Section --- */}
-<Section id="contact">
-  <h2 className="text-4xl font-bold text-center mb-4 text-white">
-    Get In Touch
-  </h2>
-  <p className="text-xl text-center text-gray-300 max-w-3xl mx-auto mb-16">
-    Ready to collaborate on your next project? Let's discuss how we can work together to
-    bring your ideas to life.
-  </p>
-
-  <div className="grid md:grid-cols-2 gap-16 items-start">
-    
-    {/* Left Column: Let's Connect */}
-    <div className="space-y-8">
-      <h3 className="text-3xl font-bold text-white">Let's Connect</h3>
-      <p className="text-gray-300 text-lg">
-        I'm always interested in new opportunities, collaborations, and interesting
-        projects. Let's connect!
-      </p>
-
-      {/* Contact Items */}
-      <div className="space-y-6">
-        {/* Email */}
-        <div className="flex items-center gap-4">
-          <div className="bg-primary/20 p-3 rounded-full">
-            <FaEnvelope size={24} className="text-primary" />
-          </div>
-          <div>
-            <span className="text-gray-400 text-sm">Email</span>
-            <p className="text-white font-medium text-lg">mreddy3@toromail.csudh.edu</p>
-          </div>
-        </div>
-        {/* Phone */}
-        <div className="flex items-center gap-4">
-          <div className="bg-primary/20 p-3 rounded-full">
-            <FaPhone size={24} className="text-primary" />
-          </div>
-          <div>
-            <span className="text-gray-400 text-sm">Phone</span>
-            <p className="text-white font-medium text-lg">+1 (562)-826-3513</p>
-          </div>
-        </div>
-        {/* Location (using your resume data) */}
-        <div className="flex items-center gap-4">
-          <div className="bg-primary/20 p-3 rounded-full">
-            <FaMapMarkerAlt size={24} className="text-primary" />
-          </div>
-          <div>
-            <span className="text-gray-400 text-sm">Location</span>
-            <p className="text-white font-medium text-lg">Los Angeles, CA</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Follow Me */}
-      <div className="mt-8">
-        <h4 className="text-2xl font-bold text-white mb-4">Follow Me</h4>
-        <div className="flex items-center gap-6">
-          <a
-            href="https://github.com/JamesJava42"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-primary transition-transform hover:scale-110"
-            aria-label="GitHub"
-          >
-            <FaGithub size={32} />
-          </a>
-          <a
-            href="https://linkedin.com/in/rakesh-reddy-51588a202"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-primary transition-transform hover:scale-110"
-            aria-label="LinkedIn"
-          >
-            <FaLinkedin size={32} />
-          </a>
-        </div>
-      </div>
-    </div>
-
-    {/* Right Column: Form */}
-    <GlassCard>
-      {/* This is a visual-only form. To make it send emails, 
-        you can sign up for a free service like Formspree
-        and replace the 'action' URL below.
-      */}
-      <form action="#" method="POST" className="space-y-6">
-        {/* Name */}
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-200 mb-2">Name</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Your Name"
-            className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"
-            required
-          />
-        </div>
-
-        {/* Email */}
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-200 mb-2">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="your.email@example.com"
-            className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"
-            required
-          />
-        </div>
-
-        {/* Subject */}
-        <div>
-          <label htmlFor="subject" className="block text-sm font-medium text-gray-200 mb-2">Subject</label>
-          <input
-            type="text"
-            name="subject"
-            id="subject"
-            placeholder="What's this about?"
-            className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"
-            required
-          />
-        </div>
-        
-        {/* Message */}
-        <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-200 mb-2">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            rows={5}
-            placeholder="Tell me about your project..."
-            className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"
-            required
-          ></textarea>
-        </div>
-
-        {/* Send Button */}
-        <button
-          type="submit"
-          className="w-full text-lg font-semibold text-white bg-gradient-to-r from-primary to-secondary py-3 rounded-lg hover:opacity-90 transition-all shadow-lg"
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl md:text-4xl font-bold text-center mb-10"
         >
-          <span className="flex items-center justify-center gap-2">
-            <FaEnvelope /> Send Message
-          </span>
-        </button>
-      </form>
-    </GlassCard>
+          About Me
+        </motion.h2>
 
-  </div>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9 }}
+          className="max-w-3xl mx-auto"
+        >
+          <ParallaxCard>
+            <p className="text-lg leading-relaxed text-slate-200">
+              I design and implement scalable, maintainable microservice systems
+              and pipelines — with a focus on streaming (Kafka), resilience,
+              and production-grade DevOps. I enjoy converting complex domain
+              problems into reliable systems that scale.
+            </p>
+          </ParallaxCard>
+        </motion.div>
+      </Section>
+
+      {/* ---------------- Experience ---------------- */}
+      <Section id="experience">
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl md:text-4xl font-bold text-center mb-10"
+        >
+          Experience
+        </motion.h2>
+
+        <div className="space-y-8 max-w-4xl mx-auto">
+          {experiences.map((job, i) => (
+            <motion.div
+              key={job.company}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <ParallaxCard>
+                <h3 className="text-xl md:text-2xl font-semibold">{job.role}</h3>
+                <p className="text-primary/90 font-medium mb-2">
+                  {job.company} · {job.date}
+                </p>
+                <ul className="list-disc ml-6 space-y-2 text-slate-300">
+                  {job.points.map((p, idx) => (
+                    <li key={idx}>{p}</li>
+                  ))}
+                </ul>
+              </ParallaxCard>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ---------------- Projects ---------------- */}
+      <Section id="projects">
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl md:text-4xl font-bold text-center mb-10"
+        >
+          Projects
+        </motion.h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {projects.map((project, i) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+            >
+              <ParallaxCard>
+                <h4 className="text-lg font-bold mb-2">{project.title}</h4>
+                <p className="text-slate-300 mb-4">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="px-3 py-1 rounded-full text-sm bg-white/5 text-slate-100"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </ParallaxCard>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ---------------- Skills ---------------- */}
+   <Section id="skills" className="!py-0">
+  <UnifiedSkills />
+  {/* OR use MinimalSkills if you prefer the cleaner look: */}
+  {/* <MinimalSkills /> */}
 </Section>
+      {/* ---------------- Contact ---------------- */}
+      <Section id="contact">
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl md:text-4xl font-bold text-center mb-6"
+        >
+          Get In Touch
+        </motion.h2>
 
-      {/* --- Footer --- */}
-      <footer className="text-center py-8 text-gray-400">
-        <p>Designed & Built by Rakesh Reddy M.</p>
+        <p className="text-center text-slate-300 max-w-3xl mx-auto mb-10">
+          Interested in collaborating? Send a note — I usually reply within a few business days.
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <ParallaxCard>
+              <h4 className="text-lg font-semibold mb-4">Let's Connect</h4>
+              <ContactItem icon={<FaEnvelope />} title="Email" value="mreddy3@toromail.csudh.edu" />
+              <ContactItem icon={<FaPhone />} title="Phone" value="+1 (562)-826-3513" />
+              <ContactItem icon={<FaMapMarkerAlt />} title="Location" value="Los Angeles, CA" />
+
+              <div className="mt-6 flex gap-4">
+                <SocialLink href="https://github.com/JamesJava42" icon={<FaGithub size={22} />} />
+                <SocialLink href="https://linkedin.com/in/rakesh-reddy-51588a202" icon={<FaLinkedin size={22} />} />
+              </div>
+            </ParallaxCard>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <ParallaxCard>
+              <form action="#" className="space-y-4">
+                <FormField id="name" label="Name" type="text" placeholder="Your name" />
+                <FormField id="email" label="Email" type="email" placeholder="you@email.com" />
+                <FormField id="subject" label="Subject" type="text" placeholder="Project or opportunity" />
+                <div>
+                  <label htmlFor="message" className="block text-sm text-slate-300 mb-2">Message</label>
+                  <textarea id="message" rows={5} className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-300" placeholder="Tell me about your project..." />
+                </div>
+                <button type="submit" className="btn-primary w-full flex items-center justify-center gap-2">
+                  <FaEnvelope /> Send Message
+                </button>
+              </form>
+            </ParallaxCard>
+          </motion.div>
+        </div>
+      </Section>
+
+      {/* Footer */}
+      <footer className="py-12 text-center text-slate-400">
+        <p>Designed & Built — <span className="text-cyan-300 font-semibold">Rakesh Reddy M.</span></p>
       </footer>
     </main>
+  );
+}
+
+/* ---------------- Subcomponents ---------------- */
+
+function ContactItem({ icon, title, value }: { icon: React.ReactNode; title: string; value: string; }) {
+  return (
+    <div className="flex items-start gap-4 py-3">
+      <div className="bg-white/6 rounded-full p-3 w-12 h-12 flex items-center justify-center text-cyan-300">
+        {icon}
+      </div>
+      <div>
+        <div className="text-sm text-slate-300">{title}</div>
+        <div className="font-medium text-slate-100">{value}</div>
+      </div>
+    </div>
+  );
+}
+
+function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
+  return (
+    <a href={href} target="_blank" rel="noreferrer" className="text-slate-200 hover:text-cyan-300 transition-transform hover:scale-110">
+      {icon}
+    </a>
+  );
+}
+
+function FormField({ id, label, type, placeholder }: { id: string; label: string; type: string; placeholder: string; }) {
+  return (
+    <div>
+      <label htmlFor={id} className="block text-sm text-slate-300 mb-2">{label}</label>
+      <input id={id} name={id} type={type} placeholder={placeholder} className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-300" />
+    </div>
+  );
+}
+
+/* ---------- ParallaxCard (3D Tilt) ---------- */
+function ParallaxCard({ children }: { children: React.ReactNode }) {
+  // 2D offsets tracked, converted to small rotation values
+  const mvX = useMotionValue(0);
+  const mvY = useMotionValue(0);
+  const rotX = useTransform(mvY, [-120, 120], [12, -12]);
+  const rotY = useTransform(mvX, [-120, 120], [-12, 12]);
+  const sRotX = useSpring(rotX, { stiffness: 140, damping: 18 });
+  const sRotY = useSpring(rotY, { stiffness: 140, damping: 18 });
+
+  return (
+    <motion.div
+      className="glass rounded-2xl p-5 shadow-xl border border-white/6 hover:shadow-[0_10px_30px_rgba(139,92,246,0.06)]"
+      style={{ rotateX: sRotX as any, rotateY: sRotY as any, transformStyle: "preserve-3d" }}
+      onMouseMove={(e) => {
+        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+        const dx = e.clientX - rect.left - rect.width / 2;
+        const dy = e.clientY - rect.top - rect.height / 2;
+        mvX.set(dx);
+        mvY.set(dy);
+      }}
+      onMouseLeave={() => {
+        mvX.set(0);
+        mvY.set(0);
+      }}
+    >
+      {children}
+    </motion.div>
   );
 }

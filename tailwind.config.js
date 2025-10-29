@@ -1,17 +1,21 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}", // This scans all files in src/
+    './src/**/*.{js,ts,jsx,tsx}', 
+    './public/index.html'
   ],
   theme: {
     extend: {
-      colors: {
-        'primary': '#a855f7', // Purple
-        'secondary': '#3b82f6', // Blue
-        'dark-bg': '#0f0c29', // Deep dark blue/purple
-      },
+  animation: {
+    gradientSlow: "gradient 12s ease infinite",
+  },
+  keyframes: {
+    gradient: {
+      "0%, 100%": { "background-position": "0% 50%" },
+      "50%": { "background-position": "100% 50%" },
     },
   },
+},
+  },
   plugins: [],
-}
+};

@@ -1,20 +1,17 @@
 // src/components/GlassCard.tsx
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
 
 interface Props {
   children: React.ReactNode;
   className?: string;
 }
 
-export default function GlassCard({ children, className = '' }: Props) {
+export default function GlassCard({ children, className = "" }: Props) {
   return (
-    <motion.div
-      className={`bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 shadow-xl p-8 ${className}`}
-      whileHover={{ y: -5, boxShadow: '0 20px 25px -5px rgba(168, 85, 247, 0.2)' }}
-      transition={{ duration: 0.3 }}
+    <div
+      className={`glass rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] ${className}`}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
