@@ -11,6 +11,7 @@ import { experiences, projects } from "./data/profileData";
 import Navbar from "./components/Navbar";
 import Section from "./components/Section";
 import UnifiedSkills from "./components/UnifiedSkills";
+import UnifiedProjects from "./components/UnifiedProjects";
 
 /**
  * Modern, animated App - includes:
@@ -175,44 +176,9 @@ export default function App() {
       </Section>
 
       {/* ---------------- Projects ---------------- */}
-      <Section id="projects">
-        <motion.h2
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-bold text-center mb-10"
-        >
-          Projects
-        </motion.h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-            >
-              <ParallaxCard>
-                <h4 className="text-lg font-bold mb-2">{project.title}</h4>
-                <p className="text-slate-300 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="px-3 py-1 rounded-full text-sm bg-white/5 text-slate-100"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </ParallaxCard>
-            </motion.div>
-          ))}
-        </div>
-      </Section>
+  <Section id="projects" className="!py-0">
+  <UnifiedProjects />
+</Section>
 
       {/* ---------------- Skills ---------------- */}
    <Section id="skills" className="!py-0">

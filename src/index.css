@@ -284,6 +284,165 @@ body {
   50% { background-position: 100% 50%; }
 }
 
+/* -------------------------------------- */
+/* 🚀 Projects Section Styles */
+/* -------------------------------------- */
+
+/* Project Card Gradients */
+.project-card-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(6, 182, 212, 0.1) 0%,
+    rgba(139, 92, 246, 0.05) 50%,
+    rgba(236, 72, 153, 0.1) 100%
+  );
+}
+
+.featured-project-glow {
+  box-shadow: 
+    0 0 40px rgba(6, 182, 212, 0.15),
+    0 0 80px rgba(139, 92, 246, 0.1);
+}
+
+/* Smooth transitions for project cards */
+.project-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Category color coding for projects */
+.category-cloud { 
+  background: rgba(6, 182, 212, 0.15); 
+  color: rgb(34, 211, 238); 
+}
+
+.category-backend { 
+  background: rgba(139, 92, 246, 0.15); 
+  color: rgb(167, 139, 250); 
+}
+
+.category-ai-ml { 
+  background: rgba(16, 185, 129, 0.15); 
+  color: rgb(52, 211, 153); 
+}
+
+.category-vr { 
+  background: rgba(245, 158, 11, 0.15); 
+  color: rgb(251, 191, 36); 
+}
+
+.category-systems { 
+  background: rgba(239, 68, 68, 0.15); 
+  color: rgb(248, 113, 113); 
+}
+
+/* Project Filter Buttons */
+.project-filter-btn {
+  @apply px-6 py-3 rounded-xl backdrop-blur-sm border-2 transition-all font-semibold;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.project-filter-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.project-filter-btn.active {
+  background: rgba(6, 182, 212, 0.2);
+  border-color: rgba(6, 182, 212, 0.5);
+  color: rgb(34, 211, 238);
+}
+
+/* Featured Project Styles */
+.featured-project {
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-project::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.featured-project:hover::before {
+  left: 100%;
+}
+
+/* Project Tech Stack Badges */
+.tech-badge {
+  @apply px-2 py-1 rounded-full text-xs border transition-all;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.tech-badge:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Project Card Hover Effects */
+.project-card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 60px rgba(139, 92, 246, 0.1);
+}
+
+/* Project Progress Bar */
+.project-progress-bar {
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+/* -------------------------------------- */
+/* 📊 Stats & Metrics */
+/* -------------------------------------- */
+.stats-card {
+  @apply text-center p-4 rounded-lg border transition-all;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.stats-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.stats-number {
+  @apply text-2xl font-bold mb-1;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* -------------------------------------- */
+/* 🎨 Enhanced UI Components */
+/* -------------------------------------- */
+
 /* Smooth Scroll Behavior */
 html {
   scroll-behavior: smooth;
@@ -347,6 +506,10 @@ a:focus-visible {
   background-size: 200px 100%;
 }
 
+/* -------------------------------------- */
+/* 📱 Responsive Design */
+/* -------------------------------------- */
+
 /* Mobile Optimization */
 @media (max-width: 768px) {
   .floating-bubble {
@@ -370,7 +533,30 @@ a:focus-visible {
       transparent
     );
   }
+  
+  .project-card:hover {
+    transform: none;
+  }
+  
+  .project-filter-btn {
+    @apply px-4 py-2 text-sm;
+  }
+  
+  .featured-project-glow {
+    box-shadow: none;
+  }
 }
+
+/* Tablet Optimization */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .project-card-hover:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* -------------------------------------- */
+/* ♿ Accessibility & Performance */
+/* -------------------------------------- */
 
 /* High Contrast Mode Support */
 @media (prefers-contrast: high) {
@@ -382,6 +568,10 @@ a:focus-visible {
   .glass-enhanced {
     background: rgba(255, 255, 255, 0.15);
     border: 2px solid rgba(255, 255, 255, 0.4);
+  }
+  
+  .project-filter-btn {
+    border-width: 2px;
   }
 }
 
@@ -397,7 +587,160 @@ a:focus-visible {
   
   .skills-orbital-ring,
   .gentle-float,
-  .skill-pulse {
+  .skill-pulse,
+  .floating-bubble,
+  .animate-gradientSlow,
+  .gradient-text-enhanced {
     animation: none;
   }
+  
+  .project-card-hover:hover,
+  .glass:hover,
+  .glass-enhanced:hover {
+    transform: none;
+  }
+}
+
+/* Dark Mode Enhancement (if needed for future) */
+@media (prefers-color-scheme: dark) {
+  /* Already optimized for dark mode */
+}
+
+/* Print Styles */
+@media print {
+  .floating-bubble,
+  .skills-orbital-ring,
+  .project-card-hover:hover {
+    display: none;
+  }
+  
+  .glass,
+  .glass-enhanced {
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: none;
+  }
+}
+
+/* -------------------------------------- */
+/* 🎪 Special Effects & Animations */
+/* -------------------------------------- */
+
+/* Pulse animation for interactive elements */
+@keyframes gentle-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+.gentle-pulse {
+  animation: gentle-pulse 3s ease-in-out infinite;
+}
+
+/* Slide-in animations */
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in-left {
+  animation: slide-in-left 0.6s ease-out;
+}
+
+.slide-in-right {
+  animation: slide-in-right 0.6s ease-out;
+}
+
+.slide-in-up {
+  animation: slide-in-up 0.6s ease-out;
+}
+
+/* Gradient border animation */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
+              linear-gradient(135deg, var(--primary), var(--accent)) border-box;
+  border: 2px solid transparent;
+}
+
+/* -------------------------------------- */
+/* 🔧 Utility Classes */
+/* -------------------------------------- */
+
+/* Text gradient utilities */
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, var(--accent), #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Background gradient utilities */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+
+.bg-gradient-accent {
+  background: linear-gradient(135deg, var(--accent), #ec4899);
+}
+
+/* Border gradient utilities */
+.border-gradient-primary {
+  border: 2px solid;
+  border-image: linear-gradient(135deg, var(--primary), var(--accent)) 1;
+}
+
+/* Shadow glow effects */
+.glow-primary {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+}
+
+.glow-accent {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.glow-combined {
+  box-shadow: 
+    0 0 20px rgba(6, 182, 212, 0.2),
+    0 0 40px rgba(139, 92, 246, 0.1);
 }

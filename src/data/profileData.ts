@@ -179,52 +179,64 @@ interface Project {
   title: string;
   description: string;
   tech: string[];
+  category: 'cloud' | 'ai-ml' | 'vr' | 'backend' | 'systems';
+  featured?: boolean;
 }
-
 export const projects: Project[] = [
   {
     title: "Cloud-Native Ordering Platform",
-    description: "Deployed microservices to AWS EC2 behind an ELB with 99% uptime.",
-    tech: ["TypeScript", "React", "AWS", "Kubernetes", "GraphQL"],
+    description: "Deployed microservices to AWS EC2 behind an ELB with 99% uptime, implementing auto-scaling and load balancing.",
+    tech: ["AWS EC2", "Kubernetes", "Microservices", "Load Balancing", "Auto-scaling"],
+    category: 'cloud',
+    featured: true
   },
   {
     title: "Real-Time Stock Control System",
-    description: "Provisioned fault-tolerant cluster on AWS EC2 using Docker & Kubernetes.",
-    tech: ["Java", "Spring Boot", "Kafka", "AWS", "JPA"],
-  },
-  {
-    title: "Academic Profile Portal",
-    description: "Developed secure profile management & real-time search with Angular and Spring Boot.",
-    tech: ["Spring Boot", "Angular", "AWS EC2", "MySQL"],
+    description: "Provisioned fault-tolerant cluster on AWS EC2 using Docker & Kubernetes with real-time inventory tracking.",
+    tech: ["Java", "Spring Boot", "Kafka", "Docker", "Kubernetes", "AWS"],
+    category: 'backend',
+    featured: true
   },
   {
     title: "Azure ML Log Anomaly Detector",
-    description: "Created an unsupervised model for server log anomaly detection in Azure Blob Storage.",
-    tech: ["Python", "Scikit-learn", "Azure Blob Storage", "ML", "Data Pipeline"],
+    description: "Built unsupervised machine learning model for server log anomaly detection in Azure Blob Storage.",
+    tech: ["Python", "Scikit-learn", "Azure ML", "Data Pipeline", "Azure Blob Storage"],
+    category: 'ai-ml'
   },
   {
-    title: "Creative Image Style Transfer",
-    description: "Applied artistic styles using CNNs and deployed inference API using PyTorch/TensorFlow.",
-    tech: ["Python", "PyTorch", "CNN", "Transfer Learning", "Flask API"],
+    title: "Academic Profile Portal",
+    description: "Developed secure profile management system with real-time search using Angular and Spring Boot.",
+    tech: ["Spring Boot", "Angular", "AWS EC2", "MySQL", "REST APIs"],
+    category: 'backend'
   },
   {
     title: "VR Interactive Physics Simulation Lab",
-    description: "Built VR simulation of pendulum and mechanics experiments in Unity 3D.",
-    tech: ["Unity 3D", "C#", "Physics Engine", "XR", "VR Simulation"],
+    description: "Built immersive VR simulation of pendulum and mechanics experiments in Unity 3D for educational purposes.",
+    tech: ["Unity 3D", "C#", "Physics Engine", "XR Toolkit", "VR Simulation"],
+    category: 'vr'
   },
   {
-    title: "VR Electrostatic Field Simulator",
-    description: "Created real-time Coulomb's Law field visualization for Meta Quest 3.",
-    tech: ["Unity 3D", "C#", "Electromagnetism", "Oculus SDK"],
+    title: "Creative Image Style Transfer",
+    description: "Applied artistic styles using CNNs and deployed inference API using PyTorch and Flask.",
+    tech: ["Python", "PyTorch", "CNN", "Transfer Learning", "Flask API"],
+    category: 'ai-ml'
   },
   {
     title: "Core Java Banking Transaction System",
-    description: "Developed multi-threaded financial transaction engine in Core Java.",
-    tech: ["Java", "Concurrency", "JDBC", "PostgreSQL", "JUnit"],
+    description: "Developed multi-threaded financial transaction engine with concurrent processing and database integrity.",
+    tech: ["Java", "Multithreading", "JDBC", "PostgreSQL", "JUnit", "Design Patterns"],
+    category: 'systems'
+  },
+  {
+    title: "VR Electrostatic Field Simulator",
+    description: "Created real-time Coulomb's Law field visualization for Meta Quest 3 with interactive charge placement.",
+    tech: ["Unity 3D", "C#", "Shader Graph", "Oculus SDK", "Physics Simulation"],
+    category: 'vr'
   },
   {
     title: "Secure File Transfer Utility",
-    description: "Built socket-based file transfer utility with integrity checks and encryption.",
-    tech: ["Java", "Networking", "Security", "File I/O", "Maven", "Linux"],
-  },
+    description: "Built socket-based file transfer utility with encryption, integrity checks, and progress tracking.",
+    tech: ["Java", "Socket Programming", "Encryption", "File I/O", "Maven"],
+    category: 'systems'
+  }
 ];
