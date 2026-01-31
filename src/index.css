@@ -1,0 +1,1136 @@
+/* -------------------------------------- */
+/* 🌌 Tailwind Directives */
+/* -------------------------------------- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------------------- */
+/* 🎨 Global Theme Tokens */
+/* -------------------------------------- */
+:root {
+  --primary: #06b6d4;
+  --accent: #8b5cf6;
+  --muted: #94a3b8;
+  --bg-dark: #0b1221;
+  --bg-mid: #0f1724;
+  --bg-deep: #071024;
+}
+
+/* -------------------------------------- */
+/* 🧠 Base Typography & Body */
+/* -------------------------------------- */
+html,
+body {
+  @apply antialiased scroll-smooth text-slate-100 bg-transparent;
+  min-height: 100%;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+  background-color: var(--bg-dark);
+}
+
+/* -------------------------------------- */
+/* 🌈 Animated Gradient Background */
+/* -------------------------------------- */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradientSlow {
+  background-image: linear-gradient(
+    120deg,
+    var(--bg-deep),
+    var(--bg-mid) 25%,
+    var(--bg-dark) 50%,
+    var(--bg-mid) 75%,
+    var(--bg-deep)
+  );
+  background-size: 400% 400%;
+  animation: gradient 18s ease infinite;
+}
+
+/* -------------------------------------- */
+/* ☁️ Floating Bubbles (Soft Orbs) */
+/* -------------------------------------- */
+.floating-bubble {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.28;
+  pointer-events: none;
+  animation: floatY 9s ease-in-out infinite;
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-28px) scale(1.04);
+  }
+}
+
+/* -------------------------------------- */
+/* 🧊 Glass Morphism Card */
+/* -------------------------------------- */
+.glass {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+}
+
+.glass:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(139, 92, 246, 0.15);
+}
+
+/* -------------------------------------- */
+/* ⚡ Buttons */
+/* -------------------------------------- */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-2 rounded-lg font-semibold text-white shadow-lg transition-transform duration-150;
+  background: linear-gradient(
+    to right,
+    var(--accent),
+    var(--primary)
+  );
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.25);
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center px-5 py-2 rounded-lg font-medium text-white border border-white/20 bg-transparent transition-all duration-150;
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+/* -------------------------------------- */
+/* 💎 Utility Colors */
+/* -------------------------------------- */
+.text-primary {
+  color: var(--primary);
+}
+.text-accent {
+  color: var(--accent);
+}
+.bg-primary {
+  background-color: var(--primary);
+}
+
+/* -------------------------------------- */
+/* 🎯 Unified Skills Design */
+/* -------------------------------------- */
+
+/* Orbital Ring Animation */
+.skills-orbital-ring {
+  position: relative;
+  animation: orbital-rotate 20s linear infinite;
+}
+
+@keyframes orbital-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Pyramid Layer Transitions */
+.skill-pyramid-layer {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Skills Wave Container */
+.skill-wave-container {
+  mask: linear-gradient(
+    90deg,
+    transparent,
+    white 20%,
+    white 80%,
+    transparent
+  );
+}
+
+/* Floating Animation for Orbs */
+@keyframes gentle-float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  33% { 
+    transform: translateY(-5px) rotate(1deg); 
+  }
+  66% { 
+    transform: translateY(3px) rotate(-1deg); 
+  }
+}
+
+.gentle-float {
+  animation: gentle-float 6s ease-in-out infinite;
+}
+
+.gentle-float:nth-child(2n) {
+  animation-delay: -2s;
+}
+
+.gentle-float:nth-child(3n) {
+  animation-delay: -4s;
+}
+
+/* Gradient Backgrounds for Categories */
+.category-gradient-0 {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(59, 130, 246, 0.15));
+}
+
+.category-gradient-1 {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
+}
+
+.category-gradient-2 {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(16, 185, 129, 0.15));
+}
+
+.category-gradient-3 {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(239, 68, 68, 0.15));
+}
+
+/* Hover Glow Effect */
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 
+    0 0 20px rgba(139, 92, 246, 0.3),
+    0 0 40px rgba(6, 182, 212, 0.2);
+}
+
+/* Enhanced Glass Effects */
+.glass-enhanced {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.025) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-enhanced:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.25),
+    0 0 80px rgba(139, 92, 246, 0.15);
+}
+
+/* Skill Orb Pulse Animation */
+@keyframes skill-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(6, 182, 212, 0.4),
+      0 0 40px rgba(139, 92, 246, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(6, 182, 212, 0.6),
+      0 0 60px rgba(139, 92, 246, 0.3);
+  }
+}
+
+.skill-pulse {
+  animation: skill-pulse 3s ease-in-out infinite;
+}
+
+/* Gradient Text Enhancement */
+.gradient-text-enhanced {
+  background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* -------------------------------------- */
+/* 🚀 Projects Section Styles */
+/* -------------------------------------- */
+
+/* Project Card Gradients */
+.project-card-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(6, 182, 212, 0.1) 0%,
+    rgba(139, 92, 246, 0.05) 50%,
+    rgba(236, 72, 153, 0.1) 100%
+  );
+}
+
+.featured-project-glow {
+  box-shadow: 
+    0 0 40px rgba(6, 182, 212, 0.15),
+    0 0 80px rgba(139, 92, 246, 0.1);
+}
+
+/* Smooth transitions for project cards */
+.project-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Category color coding for projects */
+.category-cloud { 
+  background: rgba(6, 182, 212, 0.15); 
+  color: rgb(34, 211, 238); 
+}
+
+.category-backend { 
+  background: rgba(139, 92, 246, 0.15); 
+  color: rgb(167, 139, 250); 
+}
+
+.category-ai-ml { 
+  background: rgba(16, 185, 129, 0.15); 
+  color: rgb(52, 211, 153); 
+}
+
+.category-vr { 
+  background: rgba(245, 158, 11, 0.15); 
+  color: rgb(251, 191, 36); 
+}
+
+.category-systems { 
+  background: rgba(239, 68, 68, 0.15); 
+  color: rgb(248, 113, 113); 
+}
+
+/* Project Filter Buttons */
+.project-filter-btn {
+  @apply px-6 py-3 rounded-xl backdrop-blur-sm border-2 transition-all font-semibold;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.project-filter-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.project-filter-btn.active {
+  background: rgba(6, 182, 212, 0.2);
+  border-color: rgba(6, 182, 212, 0.5);
+  color: rgb(34, 211, 238);
+}
+
+/* Featured Project Styles */
+.featured-project {
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-project::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.featured-project:hover::before {
+  left: 100%;
+}
+
+/* Project Tech Stack Badges */
+.tech-badge {
+  @apply px-2 py-1 rounded-full text-xs border transition-all;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.tech-badge:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Project Card Hover Effects */
+.project-card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 60px rgba(139, 92, 246, 0.1);
+}
+
+/* Project Progress Bar */
+.project-progress-bar {
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+/* -------------------------------------- */
+/* 🎭 Enhanced About & Experience Sections */
+/* -------------------------------------- */
+
+/* Tech Pill Animations */
+.tech-pill {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid;
+  backdrop-filter: blur(10px);
+}
+
+.tech-pill:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Color variants for tech pills */
+.tech-pill-cyan {
+  background: rgba(6, 182, 212, 0.2);
+  border-color: rgba(6, 182, 212, 0.3);
+  color: rgb(34, 211, 238);
+}
+
+.tech-pill-purple {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.3);
+  color: rgb(167, 139, 250);
+}
+
+.tech-pill-green {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: rgb(52, 211, 153);
+}
+
+.tech-pill-blue {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: rgb(96, 165, 250);
+}
+
+.tech-pill-red {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: rgb(248, 113, 113);
+}
+
+.tech-pill-orange {
+  background: rgba(249, 115, 22, 0.2);
+  border-color: rgba(249, 115, 22, 0.3);
+  color: rgb(251, 191, 36);
+}
+
+/* Timeline Styles */
+.timeline-line {
+  background: linear-gradient(180deg, var(--primary), var(--accent));
+  width: 2px;
+}
+
+.timeline-dot {
+  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.2);
+  background: var(--primary);
+  border: 3px solid var(--bg-dark);
+}
+
+.timeline-dot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+/* Experience Card Enhancements */
+.experience-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.experience-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  transition: left 0.6s ease;
+}
+
+.experience-card:hover::before {
+  left: 100%;
+}
+
+/* Highlight Card Animations */
+.highlight-card {
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.highlight-card:hover {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(139, 92, 246, 0.05));
+  border-color: rgba(6, 182, 212, 0.3);
+  transform: translateY(-3px);
+}
+
+/* Expertise Card Gradients */
+.expertise-card-cyan {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(6, 182, 212, 0.05));
+  border: 1px solid rgba(6, 182, 212, 0.2);
+}
+
+.expertise-card-purple {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05));
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.expertise-card-green {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+/* Enhanced Glass Effects for About Section */
+.about-main-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+}
+
+/* Skill Tag Animations */
+.skill-tag {
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skill-tag:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Career Progress Bars */
+.career-progress {
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: career-shimmer 2s infinite;
+}
+
+@keyframes career-shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Section Transition Effects */
+.section-transition {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.section-transition.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* -------------------------------------- */
+/* 📊 Stats & Metrics */
+/* -------------------------------------- */
+.stats-card {
+  @apply text-center p-4 rounded-lg border transition-all;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.stats-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.stats-number {
+  @apply text-2xl font-bold mb-1;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* -------------------------------------- */
+/* 🎨 Enhanced UI Components */
+/* -------------------------------------- */
+
+/* Smooth Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--primary), var(--accent));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(var(--accent), var(--primary));
+}
+
+/* Selection Colors */
+::selection {
+  background-color: rgba(6, 182, 212, 0.3);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: rgba(6, 182, 212, 0.3);
+  color: white;
+}
+
+/* Focus States for Accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 0.375rem;
+}
+
+/* Loading Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 200px 100%;
+}
+
+/* -------------------------------------- */
+/* 📱 Responsive Design */
+/* -------------------------------------- */
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .floating-bubble {
+    display: none;
+  }
+  
+  .skills-orbital-ring {
+    animation-duration: 30s;
+  }
+  
+  .glass-enhanced:hover {
+    transform: none;
+  }
+  
+  .skill-wave-container {
+    mask: linear-gradient(
+      90deg,
+      transparent,
+      white 10%,
+      white 90%,
+      transparent
+    );
+  }
+  
+  .project-card:hover {
+    transform: none;
+  }
+  
+  .project-filter-btn {
+    @apply px-4 py-2 text-sm;
+  }
+  
+  .featured-project-glow {
+    box-shadow: none;
+  }
+  
+  /* Timeline mobile adjustments */
+  .timeline-line {
+    left: 2rem !important;
+  }
+  
+  .timeline-dot {
+    left: 2rem !important;
+  }
+  
+  .experience-card {
+    margin-left: 3rem;
+  }
+  
+  /* Tech pills mobile adjustments */
+  .tech-pill {
+    padding: 0.75rem;
+  }
+  
+  .tech-pill:hover {
+    transform: none;
+  }
+}
+
+/* Tablet Optimization */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .project-card-hover:hover {
+    transform: translateY(-4px);
+  }
+  
+  .tech-pill:hover {
+    transform: translateY(-2px) scale(1.02);
+  }
+}
+
+/* -------------------------------------- */
+/* ♿ Accessibility & Performance */
+/* -------------------------------------- */
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .glass-enhanced {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+  }
+  
+  .project-filter-btn {
+    border-width: 2px;
+  }
+  
+  .tech-pill {
+    border-width: 2px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .skills-orbital-ring,
+  .gentle-float,
+  .skill-pulse,
+  .floating-bubble,
+  .animate-gradientSlow,
+  .gradient-text-enhanced,
+  .pulse-dot,
+  .career-shimmer,
+  .shimmer {
+    animation: none;
+  }
+  
+  .project-card-hover:hover,
+  .glass:hover,
+  .glass-enhanced:hover,
+  .tech-pill:hover,
+  .highlight-card:hover,
+  .stats-card:hover {
+    transform: none;
+  }
+  
+  .featured-project::before,
+  .experience-card::before {
+    display: none;
+  }
+}
+
+/* Dark Mode Enhancement (if needed for future) */
+@media (prefers-color-scheme: dark) {
+  /* Already optimized for dark mode */
+}
+
+/* Print Styles */
+@media print {
+  .floating-bubble,
+  .skills-orbital-ring,
+  .project-card-hover:hover,
+  .timeline-dot::before {
+    display: none;
+  }
+  
+  .glass,
+  .glass-enhanced {
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: none;
+  }
+  
+  .tech-pill {
+    background: #f3f4f6 !important;
+    color: #1f2937 !important;
+    border-color: #d1d5db !important;
+  }
+}
+
+/* -------------------------------------- */
+/* 🎪 Special Effects & Animations */
+/* -------------------------------------- */
+
+/* Pulse animation for interactive elements */
+@keyframes gentle-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+.gentle-pulse {
+  animation: gentle-pulse 3s ease-in-out infinite;
+}
+
+/* Slide-in animations */
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in-left {
+  animation: slide-in-left 0.6s ease-out;
+}
+
+.slide-in-right {
+  animation: slide-in-right 0.6s ease-out;
+}
+
+.slide-in-up {
+  animation: slide-in-up 0.6s ease-out;
+}
+
+/* Gradient border animation */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
+              linear-gradient(135deg, var(--primary), var(--accent)) border-box;
+  border: 2px solid transparent;
+}
+
+/* -------------------------------------- */
+/* 🔧 Utility Classes */
+/* -------------------------------------- */
+
+/* Text gradient utilities */
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, var(--accent), #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Background gradient utilities */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+
+.bg-gradient-accent {
+  background: linear-gradient(135deg, var(--accent), #ec4899);
+}
+
+/* Border gradient utilities */
+.border-gradient-primary {
+  border: 2px solid;
+  border-image: linear-gradient(135deg, var(--primary), var(--accent)) 1;
+}
+
+/* Shadow glow effects */
+.glow-primary {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+}
+
+.glow-accent {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.glow-combined {
+  box-shadow: 
+    0 0 20px rgba(6, 182, 212, 0.2),
+    0 0 40px rgba(139, 92, 246, 0.1);
+}
+
+/* Floating animation variants */
+.float-slow {
+  animation: floatY 12s ease-in-out infinite;
+}
+
+.float-fast {
+  animation: floatY 6s ease-in-out infinite;
+}
+
+/* Background pattern utilities */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* -------------------------------------- */
+/* 🎛️ Interactive Element States */
+/* -------------------------------------- */
+
+/* Active state for buttons and interactive elements */
+.btn-active {
+  background: linear-gradient(135deg, var(--primary), var(--accent)) !important;
+  color: white !important;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(6, 182, 212, 0.3);
+}
+
+/* Focus states for better accessibility */
+.focus-glow:focus {
+  outline: none;
+  box-shadow: 
+    0 0 0 3px rgba(6, 182, 212, 0.1),
+    0 0 0 1px var(--primary),
+    0 0 20px rgba(6, 182, 212, 0.2);
+}
+
+/* Loading states */
+.loading-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Success states */
+.success-glow {
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+}
+
+/* Error states */
+.error-glow {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+/* -------------------------------------- */
+/* 🖼️ Image & Media Enhancements */
+/* -------------------------------------- */
+
+/* Image hover effects */
+.image-hover-scale {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Gradient overlay for images */
+.gradient-overlay {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(11, 18, 33, 0.8) 100%
+  );
+}
+
+/* Blurred background effect */
+.backdrop-blur-heavy {
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+}
+
+/* -------------------------------------- */
+/* 📐 Layout & Spacing Utilities */
+/* -------------------------------------- */
+
+/* Custom spacing for sections */
+.section-spacing {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (max-width: 768px) {
+  .section-spacing {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+/* Container max widths */
+.container-tight {
+  max-width: 800px;
+}
+
+.container-wide {
+  max-width: 1400px;
+}
+
+/* Aspect ratio utilities */
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+/* Height utilities for full-screen sections */
+.min-h-screen-90 {
+  min-height: 90vh;
+}
+
+.min-h-screen-80 {
+  min-height: 80vh;
+}
