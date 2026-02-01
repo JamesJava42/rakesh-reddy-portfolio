@@ -1,7 +1,7 @@
 // src/components/UnifiedSkills.tsx
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
-import { skillCategories, SkillCategoryIcons } from '../data/profileData';
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { skillCategories, SkillCategoryIcons } from "../data/profileData";
 
 export default function UnifiedSkills() {
   const [activeCategory, setActiveCategory] = useState(0);
@@ -19,7 +19,7 @@ export default function UnifiedSkills() {
           Technical Expertise
         </h2>
         <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-          Building scalable cloud infrastructure with cutting-edge DevOps practices
+          Backend engineering skills for microservices, distributed systems, and data pipelines
         </p>
       </motion.div>
 
@@ -32,21 +32,24 @@ export default function UnifiedSkills() {
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
           {skillCategories.map((category, index) => {
-            const Icon = SkillCategoryIcons[category.Icon as keyof typeof SkillCategoryIcons];
+            const Icon =
+              SkillCategoryIcons[category.Icon as keyof typeof SkillCategoryIcons];
             return (
               <motion.button
                 key={category.title}
                 onClick={() => setActiveCategory(index)}
                 className={`flex items-center gap-3 px-6 py-3 rounded-xl backdrop-blur-sm border-2 transition-all ${
                   activeCategory === index
-                    ? 'bg-cyan-500/20 border-cyan-400/50 text-cyan-300'
-                    : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
+                    ? "bg-cyan-500/20 border-cyan-400/50 text-cyan-300"
+                    : "bg-white/5 border-white/10 text-slate-300 hover:bg-white/10"
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Icon className="text-lg" />
-                <span className="font-semibold whitespace-nowrap">{category.title}</span>
+                <span className="font-semibold whitespace-nowrap">
+                  {category.title}
+                </span>
               </motion.button>
             );
           })}
@@ -109,11 +112,19 @@ export default function UnifiedSkills() {
           >
             {/* Category Overview */}
             <div className="glass rounded-2xl p-6">
-              <h4 className="text-lg font-bold text-white mb-4">Expertise Overview</h4>
+              <h4 className="text-lg font-bold text-white mb-4">
+                Expertise Overview
+              </h4>
               <div className="space-y-4">
                 {skillCategories.map((category, index) => (
                   <div key={category.title} className="flex items-center justify-between">
-                    <span className={`text-sm ${activeCategory === index ? 'text-cyan-300 font-semibold' : 'text-slate-300'}`}>
+                    <span
+                      className={`text-sm ${
+                        activeCategory === index
+                          ? "text-cyan-300 font-semibold"
+                          : "text-slate-300"
+                      }`}
+                    >
                       {category.title}
                     </span>
                     <div className="flex items-center gap-2">

@@ -14,7 +14,7 @@ import {
   FaNetworkWired,
 } from "react-icons/fa";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { experiences } from "./data/profileData"; // Remove projects import
+import { experiences, headline, aboutSummary, education, certifications } from "./data/profileData";
 import Navbar from "./components/Navbar";
 import Section from "./components/Section";
 import UnifiedSkills from "./components/UnifiedSkills";
@@ -72,7 +72,17 @@ export default function App() {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="text-xl md:text-2xl font-semibold text-slate-300 mt-4"
           >
-            Microservices · Event-driven Systems · Cloud-native Platforms
+            Backend Engineer · Microservices · Distributed Systems · Data Pipelines
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.32, duration: 0.6 }}
+            className="max-w-4xl mx-auto text-slate-300 mt-3 text-sm md:text-base"
+          >
+            {headline}
           </motion.p>
 
           <motion.p
@@ -82,9 +92,7 @@ export default function App() {
             transition={{ delay: 0.45, duration: 0.6 }}
             className="max-w-2xl mx-auto text-slate-400 mt-6"
           >
-            3+ years building resilient microservices with Java, Spring Boot,
-            Kafka, and Kubernetes — focusing on reliability, observability, and
-            automation.
+            {aboutSummary[0]} {aboutSummary[1]}
           </motion.p>
 
           <motion.div
@@ -94,8 +102,8 @@ export default function App() {
             viewport={{ once: true }}
             transition={{ delay: 0.8 }}
           >
-            <a href="/Mareddy_Rakesh.pdf" download className="btn-primary">
-              Download Resume
+            <a href="/Rakesh_Reddy_Profile.pdf" download className="btn-primary">
+              Download Profile PDF
             </a>
             <a href="#projects" className="btn-outline">
               View Projects
@@ -137,12 +145,11 @@ export default function App() {
           >
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-bold text-white mb-4">Cloud & DevOps Engineer</h3>
+                <h3 className="text-2xl font-bold text-white mb-4">
+                  Backend Engineer / Data Engineer
+                </h3>
                 <p className="text-lg leading-relaxed text-slate-200 mb-6">
-                  I design and implement scalable, maintainable microservice systems
-                  and pipelines — with a focus on streaming (Kafka), resilience,
-                  and production-grade DevOps. I enjoy converting complex domain
-                  problems into reliable systems that scale.
+                  I build scalable backend systems and data-driven services using Java, Spring Boot, Python, and SQL on cloud-native stacks. I focus on microservices, distributed systems, event-driven architectures, and high-performance data workflows — from API design and database modeling to CI/CD, containerization, cloud deployments, and production support.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <span className="px-4 py-2 rounded-full bg-cyan-500/20 text-cyan-300 text-sm font-medium">
@@ -152,14 +159,17 @@ export default function App() {
                     Cloud Native
                   </span>
                   <span className="px-4 py-2 rounded-full bg-green-500/20 text-green-300 text-sm font-medium">
-                    DevOps
+                    AWS
                   </span>
                   <span className="px-4 py-2 rounded-full bg-orange-500/20 text-orange-300 text-sm font-medium">
                     Event-Driven
                   </span>
+                  <span className="px-4 py-2 rounded-full bg-pink-500/20 text-pink-300 text-sm font-medium">
+                    Data Pipelines
+                  </span>
                 </div>
               </div>
-              
+
               {/* Tech Stack Visualization */}
               <div className="grid grid-cols-3 gap-4">
                 <TechPill icon={<FaCloud />} label="Cloud Platforms" color="cyan" />
@@ -215,7 +225,7 @@ export default function App() {
           transition={{ delay: 0.2 }}
           className="text-center text-slate-300 max-w-2xl mx-auto mb-12"
         >
-          Building experience across academia and industry with a focus on cloud technologies
+          Building backend systems across academia and industry with a focus on scalability and reliability
         </motion.p>
 
         <div className="max-w-6xl mx-auto">
@@ -223,7 +233,7 @@ export default function App() {
           <div className="relative">
             {/* Timeline Line */}
             <div className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-500 to-purple-500 rounded-full" />
-            
+
             {experiences.map((job, i) => (
               <motion.div
                 key={job.company}
@@ -232,16 +242,18 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: i * 0.2 }}
                 className={`relative flex flex-col md:flex-row items-start mb-12 ${
-                  i % 2 === 0 ? 'md:flex-row-reverse' : ''
+                  i % 2 === 0 ? "md:flex-row-reverse" : ""
                 }`}
               >
                 {/* Timeline Dot */}
                 <div className="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-cyan-400 rounded-full border-4 border-slate-900 z-10" />
-                
+
                 {/* Date Card */}
-                <div className={`w-full md:w-1/4 mb-4 md:mb-0 ${
-                  i % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8'
-                }`}>
+                <div
+                  className={`w-full md:w-1/4 mb-4 md:mb-0 ${
+                    i % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8"
+                  }`}
+                >
                   <div className="glass p-4 rounded-xl">
                     <p className="text-cyan-300 font-semibold">{job.date}</p>
                     <p className="text-slate-300 text-sm">{job.company}</p>
@@ -263,7 +275,9 @@ export default function App() {
             viewport={{ once: true }}
             className="mt-16"
           >
-            <h3 className="text-2xl font-bold text-white text-center mb-8">Career Highlights</h3>
+            <h3 className="text-2xl font-bold text-white text-center mb-8">
+              Career Highlights
+            </h3>
             <div className="grid md:grid-cols-4 gap-6">
               <HighlightCard number="3+" label="Years Experience" />
               <HighlightCard number="10+" label="Projects Delivered" />
@@ -282,6 +296,71 @@ export default function App() {
       {/* ---------------- Skills ---------------- */}
       <Section id="skills" className="!py-0">
         <UnifiedSkills />
+      </Section>
+
+      {/* ---------------- Education ---------------- */}
+      <Section id="education">
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl md:text-4xl font-bold text-center mb-6"
+        >
+          Education
+        </motion.h2>
+
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
+          {education.map((ed) => {
+            const Icon = ed.icon;
+            return (
+              <div key={ed.degree} className="glass rounded-2xl shadow-lg p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center">
+                    <Icon className="text-cyan-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white">{ed.degree}</h3>
+                    <p className="text-slate-300">{ed.school}</p>
+                    <p className="text-slate-400 text-sm mt-1">{ed.dates}</p>
+                    {ed.focus ? <p className="text-slate-300 mt-3">{ed.focus}</p> : null}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </Section>
+
+      {/* ---------------- Certifications ---------------- */}
+      <Section id="certifications">
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl md:text-4xl font-bold text-center mb-6"
+        >
+          Certifications
+        </motion.h2>
+
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {certifications.map((c) => {
+            const Icon = c.icon;
+            return (
+              <div key={c.name} className="glass rounded-2xl shadow-lg p-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center">
+                    <Icon className="text-purple-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-white">{c.name}</h3>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </Section>
 
       {/* ---------------- Contact ---------------- */}
@@ -315,7 +394,10 @@ export default function App() {
 
               <div className="mt-6 flex gap-4">
                 <SocialLink href="https://github.com/JamesJava42" icon={<FaGithub size={22} />} />
-                <SocialLink href="https://linkedin.com/in/rakesh-reddy-51588a202" icon={<FaLinkedin size={22} />} />
+                <SocialLink
+                  href="https://www.linkedin.com/in/rakesh-reddy-m-51588a202"
+                  icon={<FaLinkedin size={22} />}
+                />
               </div>
             </ParallaxCard>
           </motion.div>
@@ -332,8 +414,15 @@ export default function App() {
                 <FormField id="email" label="Email" type="email" placeholder="you@email.com" />
                 <FormField id="subject" label="Subject" type="text" placeholder="Project or opportunity" />
                 <div>
-                  <label htmlFor="message" className="block text-sm text-slate-300 mb-2">Message</label>
-                  <textarea id="message" rows={5} className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-300" placeholder="Tell me about your project..." />
+                  <label htmlFor="message" className="block text-sm text-slate-300 mb-2">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    rows={5}
+                    className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-300"
+                    placeholder="Tell me about your project..."
+                  />
                 </div>
                 <button type="submit" className="btn-primary w-full flex items-center justify-center gap-2">
                   <FaEnvelope /> Send Message
@@ -346,7 +435,9 @@ export default function App() {
 
       {/* Footer */}
       <footer className="py-12 text-center text-slate-400">
-        <p>Designed & Built — <span className="text-cyan-300 font-semibold">Rakesh Reddy M.</span></p>
+        <p>
+          Designed & Built — <span className="text-cyan-300 font-semibold">Rakesh Reddy M.</span>
+        </p>
       </footer>
     </main>
   );
@@ -357,18 +448,20 @@ export default function App() {
 // Tech Pill for About Section
 function TechPill({ icon, label, color }: { icon: React.ReactNode; label: string; color: string }) {
   const colorClasses = {
-    cyan: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
-    purple: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-    green: 'bg-green-500/20 text-green-300 border-green-500/30',
-    blue: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-    red: 'bg-red-500/20 text-red-300 border-red-500/30',
-    orange: 'bg-orange-500/20 text-orange-300 border-orange-500/30',
+    cyan: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
+    purple: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+    green: "bg-green-500/20 text-green-300 border-green-500/30",
+    blue: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+    red: "bg-red-500/20 text-red-300 border-red-500/30",
+    orange: "bg-orange-500/20 text-orange-300 border-orange-500/30",
   };
 
   return (
     <motion.div
       whileHover={{ scale: 1.05, y: -2 }}
-      className={`p-4 rounded-xl border backdrop-blur-sm flex flex-col items-center justify-center text-center ${colorClasses[color as keyof typeof colorClasses]}`}
+      className={`p-4 rounded-xl border backdrop-blur-sm flex flex-col items-center justify-center text-center ${
+        colorClasses[color as keyof typeof colorClasses]
+      }`}
     >
       <div className="text-xl mb-2">{icon}</div>
       <span className="text-sm font-medium">{label}</span>
@@ -377,11 +470,21 @@ function TechPill({ icon, label, color }: { icon: React.ReactNode; label: string
 }
 
 // Expertise Card for About Section
-function ExpertiseCard({ icon, title, description, color }: { icon: React.ReactNode; title: string; description: string; color: string }) {
+function ExpertiseCard({
+  icon,
+  title,
+  description,
+  color,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  color: string;
+}) {
   const colorClasses = {
-    cyan: 'from-cyan-500/10 to-cyan-500/5 text-cyan-300',
-    purple: 'from-purple-500/10 to-purple-500/5 text-purple-300',
-    green: 'from-green-500/10 to-green-500/5 text-green-300',
+    cyan: "from-cyan-500/10 to-cyan-500/5 text-cyan-300",
+    purple: "from-purple-500/10 to-purple-500/5 text-purple-300",
+    green: "from-green-500/10 to-green-500/5 text-green-300",
   };
 
   return (
@@ -390,7 +493,9 @@ function ExpertiseCard({ icon, title, description, color }: { icon: React.ReactN
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       whileHover={{ y: -5 }}
-      className={`glass p-6 rounded-2xl bg-gradient-to-br ${colorClasses[color as keyof typeof colorClasses]} h-full`}
+      className={`glass p-6 rounded-2xl bg-gradient-to-br ${
+        colorClasses[color as keyof typeof colorClasses]
+      } h-full`}
     >
       <div className="text-2xl mb-4">{icon}</div>
       <h4 className="text-lg font-bold text-white mb-3">{title}</h4>
@@ -402,17 +507,14 @@ function ExpertiseCard({ icon, title, description, color }: { icon: React.ReactN
 // Enhanced Experience Card
 function ExperienceCard({ job, index }: { job: any; index: number }) {
   return (
-    <motion.div
-      whileHover={{ y: -5 }}
-      className="glass-enhanced p-6 rounded-2xl h-full"
-    >
+    <motion.div whileHover={{ y: -5 }} className="glass-enhanced p-6 rounded-2xl h-full">
       <div className="flex items-start justify-between mb-4">
         <h3 className="text-xl font-bold text-white">{job.role}</h3>
         <div className="hidden md:block px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-sm font-medium">
-          {index === 0 ? 'Current' : 'Previous'}
+          {index === 0 ? "Current" : "Previous"}
         </div>
       </div>
-      
+
       <ul className="space-y-3">
         {job.points.map((point: string, idx: number) => (
           <motion.li
@@ -431,14 +533,15 @@ function ExperienceCard({ job, index }: { job: any; index: number }) {
 
       {/* Tech Tags */}
       <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-white/10">
-        {job.tech && job.tech.map((tech: string, techIndex: number) => (
-          <span
-            key={techIndex}
-            className="px-2 py-1 rounded-full text-xs bg-white/5 text-slate-300 border border-white/10"
-          >
-            {tech}
-          </span>
-        ))}
+        {job.tech &&
+          job.tech.map((tech: string, techIndex: number) => (
+            <span
+              key={techIndex}
+              className="px-2 py-1 rounded-full text-xs bg-white/5 text-slate-300 border border-white/10"
+            >
+              {tech}
+            </span>
+          ))}
       </div>
     </motion.div>
   );
@@ -447,19 +550,14 @@ function ExperienceCard({ job, index }: { job: any; index: number }) {
 // Highlight Card for Experience Section
 function HighlightCard({ number, label }: { number: string; label: string }) {
   return (
-    <motion.div
-      whileHover={{ scale: 1.05 }}
-      className="text-center p-6 rounded-2xl glass border border-white/10"
-    >
+    <motion.div whileHover={{ scale: 1.05 }} className="text-center p-6 rounded-2xl glass border border-white/10">
       <div className="text-3xl font-bold text-cyan-300 mb-2">{number}</div>
       <div className="text-slate-300 text-sm">{label}</div>
     </motion.div>
   );
 }
 
-/* ---------------- Existing Subcomponents (Keep these) ---------------- */
-
-function ContactItem({ icon, title, value }: { icon: React.ReactNode; title: string; value: string; }) {
+function ContactItem({ icon, title, value }: { icon: React.ReactNode; title: string; value: string }) {
   return (
     <div className="flex items-start gap-4 py-3">
       <div className="bg-white/6 rounded-full p-3 w-12 h-12 flex items-center justify-center text-cyan-300">
@@ -475,17 +573,30 @@ function ContactItem({ icon, title, value }: { icon: React.ReactNode; title: str
 
 function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
   return (
-    <a href={href} target="_blank" rel="noreferrer" className="text-slate-200 hover:text-cyan-300 transition-transform hover:scale-110">
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="text-slate-200 hover:text-cyan-300 transition-transform hover:scale-110"
+    >
       {icon}
     </a>
   );
 }
 
-function FormField({ id, label, type, placeholder }: { id: string; label: string; type: string; placeholder: string; }) {
+function FormField({ id, label, type, placeholder }: { id: string; label: string; type: string; placeholder: string }) {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm text-slate-300 mb-2">{label}</label>
-      <input id={id} name={id} type={type} placeholder={placeholder} className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-300" />
+      <label htmlFor={id} className="block text-sm text-slate-300 mb-2">
+        {label}
+      </label>
+      <input
+        id={id}
+        name={id}
+        type={type}
+        placeholder={placeholder}
+        className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-300"
+      />
     </div>
   );
 }
