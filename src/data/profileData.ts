@@ -9,8 +9,15 @@ import {
   FaChartBar,
   FaSyncAlt,
   FaGraduationCap,
-  FaCertificate,
+  FaAws,
+  FaRobot,
 } from "react-icons/fa";
+import {
+  SiGooglecloud,
+  SiOracle,
+  SiKubernetes,
+  SiTerraform,
+} from "react-icons/si";
 
 // ──────────────────────────────
 // 🌐 Navbar Links
@@ -38,6 +45,7 @@ export const SkillCategoryIcons = {
   DataIcon: FaChartBar,
   CICDIcon: FaSyncAlt,
   OtherIcon: FaCogs,
+  AiIcon: FaRobot,
 };
 
 // ──────────────────────────────
@@ -58,7 +66,7 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Backend Engineering",
     Icon: "BackendIcon",
-    description: "Microservices, APIs, distributed systems, and backend fundamentals",
+    description: "Java backend systems, API design, microservices, and distributed system patterns",
     skills: [
       { name: "Java" },
       { name: "Spring Boot" },
@@ -66,15 +74,15 @@ export const skillCategories: SkillCategory[] = [
       { name: "REST APIs" },
       { name: "Distributed Systems" },
       { name: "JPA / Hibernate" },
-      { name: "Go" },
-      { name: "Kotlin" },
-      { name: "Python" },
+      { name: "Kafka" },
+      { name: "API Design" },
+      { name: "TDD / Unit Testing" },
     ],
   },
   {
     title: "Databases",
     Icon: "DatabaseIcon",
-    description: "Relational & NoSQL data modeling, performance, and access patterns",
+    description: "Cloud-ready relational and NoSQL data strategies for high-performance applications",
     skills: [
       { name: "PostgreSQL" },
       { name: "MySQL" },
@@ -82,44 +90,66 @@ export const skillCategories: SkillCategory[] = [
       { name: "Redis" },
       { name: "SQL" },
       { name: "NoSQL" },
-      { name: "Database Design" },
+      { name: "Data Modeling" },
       { name: "Query Optimization" },
     ],
   },
   {
     title: "Cloud & DevOps",
     Icon: "CloudIcon",
-    description: "Cloud-native deployment, containers, orchestration, and IaC",
+    description: "AWS and GCP native services, containers, orchestration, and infrastructure as code",
     skills: [
-      { name: "AWS (EC2, RDS, S3, Lambda, API Gateway)" },
+      { name: "AWS" },
+      { name: "GCP" },
       { name: "Docker" },
       { name: "Kubernetes" },
       { name: "Terraform" },
-      { name: "Jenkins" },
       { name: "GitHub Actions" },
       { name: "CI/CD" },
+      { name: "Infrastructure Automation" },
     ],
   },
   {
     title: "Data Engineering",
     Icon: "DataIcon",
-    description: "Event-driven processing and reliable data workflows",
+    description: "Event-driven data processing, ETL workflows, and analytics-ready pipelines",
     skills: [
       { name: "Kafka" },
       { name: "Data Pipelines" },
       { name: "ETL" },
       { name: "Event-Driven Architecture" },
+      { name: "Observability" },
     ],
   },
   {
     title: "Other",
     Icon: "OtherIcon",
-    description: "System design, testing, and delivery practices",
+    description: "System design, testing, and collaboration practices for reliable delivery",
     skills: [
       { name: "System Design" },
       { name: "API Design" },
-      { name: "Testing (JUnit, Mockito)" },
+      { name: "JUnit / Mockito" },
       { name: "Agile / Scrum" },
+      { name: "Linux" },
+    ],
+  },
+  {
+    title: "AI & LLM Tools",
+    Icon: "AiIcon",
+    description: "Modern AI-assisted development, prompt engineering, and LLM integration skills every developer needs in 2026",
+    skills: [
+      { name: "Prompt Engineering" },
+      { name: "LLM Agent Development" },
+      { name: "RAG Pipelines" },
+      { name: "LangChain" },
+      { name: "OpenAI API" },
+      { name: "Claude API" },
+      { name: "Vector Databases" },
+      { name: "GitHub Copilot" },
+      { name: "Cursor AI" },
+      { name: "AI Code Review" },
+      { name: "Embeddings & Search" },
+      { name: "LLM Fine-tuning Basics" },
     ],
   },
 ];
@@ -137,45 +167,43 @@ interface Experience {
 
 export const experiences: Experience[] = [
   {
-    role: "Tech Developer",
-    company: "California State University, Dominguez Hills",
-    date: "Apr 2024 – Present · Carson, CA",
+    role: "Java Software Engineer",
+    company: "Antra, Inc. · Dulles, VA",
+    date: "Jan 2026 – Present",
     points: [
-      "Developed backend and data-driven applications supporting research and academic platforms.",
-      "Built REST APIs, backend modules, and structured data workflows using Java, Spring Boot, and Python.",
-      "Designed reproducible data pipelines ensuring accuracy, consistency, and reliability.",
-      "Implemented Git-based version control, CI/CD practices, and automated testing.",
-      "Performed unit, integration, and UAT testing to validate backend logic and data outputs.",
-      "Improved system reliability through monitoring, debugging, and performance tuning.",
+      "Architected Spring Boot microservices for cloud-native enterprise platform, deployed across AWS and GCP regions.",
+      "Designed contract-first REST APIs with JWT auth, rate limiting, and OpenAPI documentation.",
+      "Automated CI/CD pipelines with GitHub Actions and Docker, reducing deployment cycle time by ~40%.",
+      "Implemented distributed tracing and structured logging for production observability.",
+      "Collaborated on cross-team cloud core standards for scalable, secure backend delivery.",
     ],
-    tech: ["Java", "Spring Boot", "Python", "SQL", "PostgreSQL", "MongoDB", "Git", "CI/CD", "AWS"],
+    tech: ["Java 17", "Spring Boot", "AWS", "GCP", "Docker", "GitHub Actions", "Microservices"],
   },
   {
-    role: "Lead Backend Engineer",
-    company: "NearMe",
-    date: "Jun 2025 – Present · Los Angeles, CA",
+    role: "Technical Developer",
+    company: "Cal State Dominguez Hills · Carson, CA",
+    date: "Mar 2024 – Nov 2025",
     points: [
-      "Architected backend foundations for a scalable, cloud-ready platform using Java and Spring Boot.",
-      "Designed modular microservices following distributed systems principles.",
-      "Owned infrastructure provisioning using Terraform (Infrastructure as Code).",
-      "Designed PostgreSQL schemas, migrations, and high-volume data access patterns.",
-      "Defined strict API contracts and collaborated with frontend teams for seamless integration.",
-      "Focused on reliability, validation, observability, and clean backend abstractions.",
+      "Engineered research data services with Java Spring Boot, exposing REST APIs consumed by 3 academic teams.",
+      "Built ETL pipelines integrating PostgreSQL and MongoDB for cross-system data consolidation.",
+      "Improved query performance by 35% through index optimization and caching strategies.",
+      "Wrote unit and integration tests (JUnit, Mockito) raising code coverage to 85%+.",
+      "Provisioned cloud resources on AWS using Terraform, enabling reproducible dev environments.",
     ],
-    tech: ["Java", "Spring Boot", "PostgreSQL", "Terraform", "AWS", "Microservices", "Distributed Systems"],
+    tech: ["Java", "Spring Boot", "Python", "PostgreSQL", "MongoDB", "AWS", "Terraform", "JUnit"],
   },
   {
-    role: "Backend & Data Engineer (Microservices)",
-    company: "Vanna Information Technologies",
-    date: "Apr 2021 – Jul 2023 · Hyderabad, India",
+    role: "Backend Software Engineer",
+    company: "Vanna Information Technologies · Hyderabad, India",
+    date: "Apr 2021 – Jul 2023",
     points: [
-      "Built scalable backend and data services using Java, Spring Boot, and SQL/NoSQL databases.",
-      "Developed REST APIs with strong validation, error handling, and consistent response models.",
-      "Implemented event-driven pipelines using Kafka for asynchronous processing.",
-      "Optimized database performance through indexing, caching, and query tuning.",
-      "Supported CI/CD pipelines, production deployments, and root-cause analysis.",
+      "Developed and maintained 10+ Java backend APIs and integration services for enterprise clients.",
+      "Built Kafka event-driven pipelines with retry logic and dead-letter queues for async data processing.",
+      "Reduced API response time by 25% through SQL query tuning and Redis caching on hot paths.",
+      "Containerized services with Docker and managed CI/CD pipelines for zero-downtime releases.",
+      "Enforced security best practices: input validation, secrets management, and OWASP compliance.",
     ],
-    tech: ["Java", "Spring Boot", "Kafka", "PostgreSQL", "MySQL", "MongoDB", "Redis", "Jenkins", "Docker"],
+    tech: ["Java", "Spring Boot", "Kafka", "PostgreSQL", "MySQL", "Redis", "MongoDB", "Docker"],
   },
 ];
 
@@ -191,55 +219,78 @@ interface Project {
   tech: string[];
   category: ProjectCategory;
   featured?: boolean;
+  icon: "cloud" | "backend" | "data" | "fullstack";
+  outcome: string;
+  deployment?: string;
+  github?: string;
 }
 
 export const projects: Project[] = [
   {
-    title: "Cloud-Native Microservices Platform",
-    description: "Containerized microservices with versioned REST APIs, automated delivery, and performance optimizations.",
+    title: "27 Icecreams – Trail Discovery App",
+    description: "Content-driven Next.js site mapping 27 iconic ice cream shops across California with interactive trail tracking.",
     bullets: [
-      "Built containerized microservices with versioned REST APIs and DTO contracts.",
-      "Deployed to Kubernetes with rolling updates, resource limits, and health checks.",
-      "Automated build/test/deploy pipelines using Jenkins + Terraform.",
-      "Implemented Redis caching and optimized JPA queries for performance.",
+      "Interactive Leaflet map with 27 shop pins, trail check-off system, and flavor quiz.",
+      "MDX blog with city guides, JSON-LD structured data, and Resend email capture.",
+      "Live on Vercel — organic SEO focus with affiliate redirect system.",
     ],
-    tech: ["Java", "Spring Boot", "Docker", "Kubernetes", "AWS", "Terraform", "Jenkins", "Redis"],
-    category: "cloud",
-    featured: true,
-  },
-  {
-    title: "Serverless Data Processing API",
-    description: "Event-driven and scheduled data processing with AWS Lambda + API Gateway and PostgreSQL.",
-    bullets: [
-      "Designed serverless workflows for scheduled and event-driven data processing.",
-      "Implemented structured logging, alarms-ready outputs, and robust error handling.",
-      "Integrated PostgreSQL with secure connection handling for serverless workloads.",
-    ],
-    tech: ["AWS Lambda", "API Gateway", "Python", "Node.js", "PostgreSQL"],
-    category: "data",
-    featured: true,
-  },
-  {
-    title: "Distributed Event-Driven Pipeline",
-    description: "Asynchronous ingestion and processing using Kafka with durability patterns and observability.",
-    bullets: [
-      "Built asynchronous data pipelines using Kafka producers/consumers.",
-      "Designed schemas for high-volume ingestion and optimized storage patterns.",
-      "Implemented retry logic, dead-letter queues, and monitoring dashboards.",
-    ],
-    tech: ["Kafka", "Java", "Spring Boot", "PostgreSQL", "MongoDB"],
-    category: "backend",
-  },
-  {
-    title: "Full-Stack AWS Portal",
-    description: "React portal + Spring Boot APIs deployed on AWS with environment-based configuration.",
-    bullets: [
-      "Developed reusable React components and state-driven UI flows.",
-      "Built REST APIs with validation, pagination, and error handling.",
-      "Deployed on AWS using EC2, RDS, and S3 with environment-based configs.",
-    ],
-    tech: ["React", "Java", "Spring Boot", "AWS EC2", "RDS", "S3"],
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Leaflet", "MDX", "Vercel"],
     category: "fullstack",
+    icon: "fullstack",
+    featured: true,
+    outcome: "Live Vercel deployment · icecream trail for SoCal",
+    deployment: "https://27icecreams.vercel.app",
+    github: "https://github.com/JamesJava42/27icecreams",
+  },
+  {
+    title: "Dairy Drive-Through Ordering App",
+    description: "Full-stack ordering platform: Angular SPA frontend + Node.js (Express + TypeScript) REST API + MySQL database.",
+    bullets: [
+      "Designed RESTful Express API with TypeScript and MySQL schema for order management.",
+      "Built Angular SPA with reactive forms, component architecture, and checkout flow.",
+      "Containerized with Docker for consistent dev/prod environments.",
+    ],
+    tech: ["Angular", "Node.js", "Express", "TypeScript", "MySQL", "Docker"],
+    category: "backend",
+    icon: "backend",
+    featured: true,
+    outcome: "Full-stack app with real backend REST API",
+    github: "https://github.com/JamesJava42/dairy-drive-through-app",
+    deployment: "https://github.com/JamesJava42/dairy-drive-through-app",
+  },
+  {
+    title: "SmartRide – Ride Sharing Platform",
+    description: "TypeScript ride-sharing web app with real-time booking flow and driver-rider matching UI.",
+    bullets: [
+      "State-managed booking with real-time ride matching and status tracking.",
+      "Responsive TypeScript UI with strict-mode component reuse and clean routing.",
+    ],
+    tech: ["TypeScript", "React", "Tailwind CSS", "Vercel"],
+    category: "fullstack",
+    icon: "fullstack",
+    outcome: "Modern ride-sharing platform prototype",
+    github: "https://github.com/JamesJava42/SmartRide",
+    deployment: "https://github.com/JamesJava42/SmartRide",
+  },
+  {
+    title: "c2cride – Coast to Coast Rides",
+    description: "TypeScript ride-sharing application with booking, routing, and user management across multiple cities.",
+    tech: ["TypeScript", "React", "Node.js", "Tailwind CSS"],
+    category: "fullstack",
+    icon: "fullstack",
+    outcome: "Cross-city ride-sharing platform",
+    github: "https://github.com/JamesJava42/c2cride",
+    deployment: "https://github.com/JamesJava42/c2cride",
+  },
+  {
+    title: "LBcrew – Crew Management App",
+    description: "TypeScript web application for crew scheduling, management, and coordination.",
+    tech: ["TypeScript", "React", "Tailwind CSS"],
+    category: "fullstack",
+    icon: "fullstack",
+    outcome: "Crew management web application",
+    github: "https://github.com/JamesJava42/LBcrew",
+    deployment: "https://github.com/JamesJava42/LBcrew",
   },
 ];
 
@@ -249,9 +300,24 @@ export const projects: Project[] = [
 export const education = [
   {
     school: "California State University, Dominguez Hills",
-    degree: "M.S. Computer Science",
+    degree: "Master of Science — Computer Science",
     dates: "2023 – 2025",
-    focus: "Backend engineering, distributed systems, and data engineering",
+    gpa: "3.8 / 4.0",
+    location: "Carson, CA",
+    focus: "Specialization: Backend Engineering, Distributed Systems & Data Engineering",
+    coursework: [
+      "Advanced Algorithms & Data Structures",
+      "Distributed Systems Design",
+      "Cloud Computing & Virtualization",
+      "Database Systems & Big Data",
+      "Software Engineering Principles",
+      "Machine Learning Fundamentals",
+    ],
+    responsibilities: [
+      "Graduate Research Assistant — designed backend data pipeline infrastructure for academic research teams",
+      "Technical Developer — delivered Java Spring Boot REST APIs consumed by 3 university systems",
+      "Collaborated on open research datasets with PostgreSQL and MongoDB integration",
+    ],
     icon: FaGraduationCap,
   },
 ];
@@ -260,19 +326,55 @@ export const education = [
 // 🏅 Certifications
 // ──────────────────────────────
 export const certifications = [
-  { name: "AWS Academy Cloud Foundations", icon: FaCertificate },
-  { name: "CKAD (Kubernetes)", icon: FaCertificate },
-  { name: "Advanced Java & Spring Framework", icon: FaCertificate },
-  { name: "MySQL DBMS", icon: FaCertificate },
+  {
+    name: "AWS Solutions Architect – Associate",
+    provider: "Amazon Web Services",
+    abbr: "AWS",
+    color: "#FF9900",
+    icon: FaAws,
+    year: "2024",
+  },
+  {
+    name: "Associate Cloud Engineer",
+    provider: "Google Cloud",
+    abbr: "GCP",
+    color: "#4285F4",
+    icon: SiGooglecloud,
+    year: "2024",
+  },
+  {
+    name: "Oracle Certified Professional – Java SE",
+    provider: "Oracle",
+    abbr: "OCP",
+    color: "#F80000",
+    icon: SiOracle,
+    year: "2023",
+  },
+  {
+    name: "Certified Kubernetes Application Developer",
+    provider: "CNCF / Linux Foundation",
+    abbr: "CKAD",
+    color: "#326CE5",
+    icon: SiKubernetes,
+    year: "2024",
+  },
+  {
+    name: "Terraform Associate",
+    provider: "HashiCorp",
+    abbr: "TF",
+    color: "#7B42BC",
+    icon: SiTerraform,
+    year: "2023",
+  },
 ];
 
 // ──────────────────────────────
 // 🪪 Headline (for hero/SEO)
 // ──────────────────────────────
 export const headline =
-  "Backend Engineer | Java (Spring Boot), Go/Kotlin, Python | Microservices, Distributed Systems, Data Pipelines | AWS, Docker, Kubernetes, Terraform";
+  "Java Backend Engineer · Spring Boot · AWS & GCP · Microservices · 4+ Years";
 
 export const aboutSummary = [
-  "Backend & Data Engineer with 3+ years of experience building scalable backend systems, microservices, and data-driven services using Java, Spring Boot, Python, SQL, and cloud-native technologies.",
-  "Skilled in designing distributed systems, REST APIs, event-driven architectures, and high-performance data workflows across the full backend lifecycle.",
+  "I'm a Java Backend Engineer with 4+ years of experience building production-grade microservices, REST APIs, and cloud-native systems on AWS and GCP.",
+  "I specialize in distributed system design, event-driven architecture with Kafka, and reliable data pipelines — taking systems from API design through deployment, observability, and continuous delivery.",
 ];
