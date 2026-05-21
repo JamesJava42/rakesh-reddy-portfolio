@@ -5,6 +5,15 @@ import { FaGithub, FaExternalLinkAlt, FaCloud, FaServer, FaDatabase, FaLaptopCod
 
 type FilterCategory = "all" | ProjectCategory;
 
+function highlightMetrics(text: string) {
+  const parts = text.split(/(\b\d+[%+x]?\b)/g);
+  return parts.map((part, i) =>
+    /^\d+[%+x]?$/.test(part)
+      ? <span key={i} className="text-orange-400 font-bold">{part}</span>
+      : part
+  );
+}
+
 const LABELS: Record<FilterCategory, string> = {
   all: "All",
   cloud: "Cloud & DevOps",
@@ -133,9 +142,9 @@ export default function UnifiedProjects() {
                 {project.bullets && project.bullets.length > 0 && (
                   <ul className="space-y-1 px-5">
                     {project.bullets.slice(0, 2).map((b) => (
-                      <li key={b} className="flex items-start gap-1.5 text-xs text-slate-500">
+                      <li key={b} className="flex items-start gap-1.5 text-xs text-slate-400">
                         <span className="mt-1 w-1 h-1 rounded-full bg-sky-400 flex-shrink-0" />
-                        {b}
+                        {highlightMetrics(b)}
                       </li>
                     ))}
                   </ul>

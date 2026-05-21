@@ -44,6 +44,20 @@ export default function App() {
 
         <div className="relative z-10 mx-auto grid gap-10 lg:grid-cols-[1.4fr_0.9fr] items-center max-w-7xl">
           <div>
+            {/* Availability badge — above the fold, immediately visible */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mb-5"
+            >
+              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 border border-emerald-500/28 px-4 py-2 text-emerald-300 text-sm font-bold shadow-lg shadow-emerald-900/20">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                Open to Senior Backend Roles · Available Now
+              </span>
+            </motion.div>
+
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -118,7 +132,7 @@ export default function App() {
             </motion.div>
           </div>
 
-          {/* ── Hero Stats Card (bento) ── */}
+          {/* ── Hero Card: Avatar + Stats ── */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -133,12 +147,21 @@ export default function App() {
               el.style.setProperty("--mouse-y", `${e.clientY - r.top}px`);
             }}
           >
-            {/* Status pill */}
-            <div className="mb-4">
-              <span className="inline-flex items-center gap-2 rounded-full bg-orange-500/10 border border-orange-500/20 px-3 py-1.5 text-orange-300 text-xs font-semibold tracking-wide">
-                <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
-                Open to Senior / Staff Roles
-              </span>
+            {/* ── Avatar ── */}
+            <div className="flex flex-col items-center mb-5">
+              <div className="relative">
+                <div className="w-28 h-28 rounded-full overflow-hidden avatar-glow-ring bg-[#0f1724] flex items-center justify-center">
+                  <img
+                    src="https://api.dicebear.com/9.x/avataaars/svg?seed=RakeshJava42&backgroundColor=0f1724&clothingColor=F97316&facialHairProbability=0&accessoriesProbability=0"
+                    alt="Rakesh Reddy"
+                    className="w-full h-full scale-110"
+                    loading="eager"
+                  />
+                </div>
+                <span className="absolute bottom-1.5 right-1.5 avatar-online-dot" />
+              </div>
+              <p className="text-sm font-bold text-white mt-3 tracking-tight">Rakesh Reddy</p>
+              <p className="text-xs text-slate-400">Java Backend Engineer · MS CS</p>
             </div>
 
             {/* Bento 2×2 metrics */}
@@ -163,9 +186,9 @@ export default function App() {
               </div>
             </div>
 
-            {/* Bottom CTA row */}
+            {/* Bottom row */}
             <div className="flex items-center justify-between pt-3 border-t border-white/8">
-              <p className="text-xs text-slate-500">📍 Los Angeles, CA · Available Now</p>
+              <p className="text-xs text-slate-500">📍 Los Angeles, CA</p>
               <span className="text-xs text-orange-400 font-semibold">5 certs · MS CS</span>
             </div>
           </motion.div>
