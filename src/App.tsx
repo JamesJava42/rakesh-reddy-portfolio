@@ -19,6 +19,7 @@ import Navbar from "./components/Navbar";
 import Section from "./components/Section";
 import UnifiedSkills from "./components/UnifiedSkills";
 import UnifiedProjects from "./components/UnifiedProjects";
+import AgentChat from "./components/AgentChat";
 
 export default function App() {
   // Removed high-frequency mouse follower to improve rendering performance
@@ -629,6 +630,9 @@ export default function App() {
           Designed & Built — <span className="text-orange-300 font-semibold">Rakesh Reddy M.</span>
         </p>
       </footer>
+
+      {/* AI Agent floating chat */}
+      <AgentChat />
     </main>
   );
 }
